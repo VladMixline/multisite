@@ -1,0 +1,163 @@
+.exercises {
+  padding: 2rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.exercises h1 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 0.5rem;
+}
+
+.exercises-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exercise-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.exercise-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  background: #f8f9fa;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s;
+}
+
+.exercise-header:hover {
+  background: #e9ecef;
+}
+
+.exercise-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.toggle-icon {
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.exercise-content {
+  padding: 1.5rem;
+}
+
+.exercise-text {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+.exercise-input {
+  margin-bottom: 1rem;
+}
+
+.exercise-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.exercise-input textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.exercise-input textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.exercise-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-save,
+.btn-clear {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-save {
+  background: #28a745;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #218838;
+}
+
+.btn-clear {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-clear:hover {
+  background: #5a6268;
+}
+
+.exercises-navigation {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+

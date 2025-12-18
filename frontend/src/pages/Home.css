@@ -1,0 +1,57 @@
+.home {
+  padding: 2rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.chapters-nav {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.chapters-nav h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.chapters-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chapters-list li {
+  margin-bottom: 0.8rem;
+}
+
+.chapters-list a {
+  display: block;
+  padding: 0.8rem 1rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.chapters-list a:hover {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: translateX(5px);
+}
+
