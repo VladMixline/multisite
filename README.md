@@ -2,12 +2,38 @@
 
 Проект с React фронтендом (Vite) и Node.js бэкендом.
 
+## Git Repository
+
+Репозиторий подключен к: https://github.com/VladMixline/multisite.git
+
+### Ветки проекта
+
+- `main` - основная ветка (production)
+- `develop` - ветка разработки
+- `feature/ui-components` - ветка для разработки UI компонентов
+
+### Работа с коммитами
+
+Для автоматического коммита изменений используйте:
+
+```bash
+.\scripts\auto-commit.ps1 "Описание изменений"
+```
+
+Или вручную:
+
+```bash
+git add .
+git commit -m "Описание изменений"
+```
+
 ## Структура проекта
 
 ```
 webproj/
 ├── frontend/          # React + Vite приложение
 ├── backend/           # Node.js Express сервер
+├── scripts/           # Вспомогательные скрипты
 └── package.json       # Корневой package.json для управления всем проектом
 ```
 
