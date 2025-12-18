@@ -1,4 +1,4 @@
-# Автоматический коммит изменений
+# Автоматический коммит и push изменений
 # Использование: .\scripts\auto-commit.ps1 "Описание изменений"
 
 param(
@@ -12,6 +12,9 @@ $status = git status --porcelain
 if ($status) {
     Write-Host "Найдены изменения, создаю коммит..." -ForegroundColor Yellow
     
+    # Получаем текущую ветку
+    $branch = git branch --show-current
+    
     # Добавление всех изменений
     git add .
     
@@ -19,7 +22,13 @@ if ($status) {
     git commit -m $Message
     
     Write-Host "✓ Коммит создан: $Message" -ForegroundColor Green
-    Write-Host "Текущая ветка: $(git branch --show-current)" -ForegroundColor Cyan
+    Write-Host "Текущая ветка: $branch" -ForegroundColor Cyan
+    
+    # Push в remote
+    Write-Host "Отправляю изменения на GitHub..." -ForegroundColor Yellow
+    git push origin $branch
+    
+    Write-Host "✓ Изменения отправлены на GitHub" -ForegroundColor Green
 } else {
     Write-Host "Нет изменений для коммита" -ForegroundColor Gray
 }
