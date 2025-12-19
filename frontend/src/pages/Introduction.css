@@ -1,62 +1,95 @@
 .introduction {
-  padding: 2rem 0;
+  padding: 3rem 0;
   min-height: calc(100vh - 200px);
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .breadcrumb {
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  color: #666;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .breadcrumb a {
-  color: #007bff;
+  color: rgba(255, 255, 255, 0.95);
   text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .introduction h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #333;
-  border-bottom: 3px solid #007bff;
-  padding-bottom: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid rgba(102, 126, 234, 0.3);
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .introduction-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
   line-height: 1.8;
   color: #444;
   text-align: justify;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .introduction-content p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .introduction-navigation {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid #e0e0e0;
+  border-top: 2px solid rgba(102, 126, 234, 0.3);
+  text-align: center;
 }
 
 .btn {
   display: inline-block;
-  padding: 0.8rem 2rem;
-  background: #007bff;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn:hover {
-  background: #0056b3;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
 }
-
-
-
-
-
