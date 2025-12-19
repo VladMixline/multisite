@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Introduction from './pages/Introduction'
 import Chapter from './pages/Chapter'
 import Chapter1 from './pages/Chapter1'
+import Chapter2 from './pages/Chapter2'
 import Exercises from './pages/Exercises'
 import Variants from './pages/Variants'
 import Coursework from './pages/Coursework'
@@ -70,6 +71,7 @@ function App() {
           <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
           <Route path="/introduction" element={<Introduction />} />
           <Route path="/chapter1" element={<Chapter1 />} />
+          <Route path="/chapter2" element={<Chapter2 />} />
           <Route path="/chapter/:chapterNumber" element={<Chapter chapters={chapters} />} />
           <Route path="/exercises" element={<Exercises chapters={chapters} />} />
           <Route path="/variants" element={<Variants chapters={chapters} />} />
