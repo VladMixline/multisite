@@ -10,6 +10,7 @@ function Home({ chapters }) {
         
         <nav className="tabs-nav">
           <Link to="/introduction" className="tab-link">Введение</Link>
+          <Link to="/chapter1" className="tab-link">1. ТЕОРИЯ ФОРМАЛЬНЫХ ГРАММАТИК И ЯЗЫКОВ</Link>
         </nav>
       </div>
     </div>
