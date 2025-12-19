@@ -1,7 +1,18 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Chapter1.css'
 
 function Chapter1() {
+  const [showQuestions, setShowQuestions] = useState(false)
+  
+  const questions = [
+    "Что такое синтаксис языка?",
+    "Что такое семантика языка?",
+    "Что определяет грамматика языка?",
+    "Что такое формальный язык?",
+    "Для чего используются синтаксические деревья?",
+    "Как называется транслятор, у которого функциональное назначение – перевод программы с языка низкого уровня в машинные коды?"
+  ]
   return (
     <div className="chapter1">
       <div className="container">
@@ -150,6 +161,25 @@ function Chapter1() {
             Таким образом, рассматривая правила грамматики, начиная с начального, можно построить синтаксическое дерево для всей программы, представленной на рис. 1.
           </p>
         </section>
+
+        <div className="questions-section">
+          <button 
+            className="questions-btn"
+            onClick={() => setShowQuestions(!showQuestions)}
+          >
+            {showQuestions ? '▼' : '▶'} Контрольные вопросы
+          </button>
+          
+          {showQuestions && (
+            <div className="questions-content">
+              <ol className="questions-list">
+                {questions.map((question, index) => (
+                  <li key={index}>{question}</li>
+                ))}
+              </ol>
+            </div>
+          )}
+        </div>
         
         <div className="chapter-navigation">
           <Link to="/" className="btn">На главную</Link>
