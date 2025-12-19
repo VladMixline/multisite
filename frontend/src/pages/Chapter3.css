@@ -1,4 +1,4 @@
-.chapter2 {
+.chapter3 {
   padding: 2rem 0;
   min-height: calc(100vh - 200px);
 }
@@ -18,7 +18,7 @@
   text-decoration: underline;
 }
 
-.chapter2 h1 {
+.chapter3 h1 {
   font-size: 2.2rem;
   margin-bottom: 2rem;
   color: #333;
@@ -70,13 +70,6 @@
   color: #333;
 }
 
-.chapter-section h3 {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
 .chapter-section p {
   margin-bottom: 1rem;
   line-height: 1.8;
@@ -84,7 +77,6 @@
   text-align: justify;
 }
 
-.chapter-section ul,
 .chapter-section ol {
   margin-left: 1.5rem;
   margin-bottom: 1rem;
@@ -92,47 +84,8 @@
   color: #444;
 }
 
-.chapter-section ul li,
 .chapter-section ol li {
   margin-bottom: 0.5rem;
-}
-
-.code-example {
-  background: #fff;
-  padding: 1rem;
-  border-left: 4px solid #28a745;
-  border-radius: 4px;
-  font-family: 'Courier New', monospace;
-  margin: 1rem 0;
-  color: #333;
-  white-space: pre-wrap;
-}
-
-.code-block {
-  background: #2d2d2d;
-  padding: 1.5rem;
-  border-radius: 4px;
-  margin: 1.5rem 0;
-  overflow-x: auto;
-}
-
-.code-block pre {
-  margin: 0;
-  color: #f8f8f2;
-  font-family: 'Courier New', monospace;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.example {
-  background: #fff;
-  padding: 1rem;
-  border-left: 4px solid #ffc107;
-  border-radius: 4px;
-  margin: 1rem 0;
-  color: #333;
 }
 
 .image-container {
@@ -237,7 +190,4 @@
 .btn:hover {
   background: #0056b3;
 }
-
-
-
 

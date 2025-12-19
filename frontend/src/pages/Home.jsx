@@ -12,6 +12,7 @@ function Home({ chapters }) {
           <Link to="/introduction" className="tab-link">Введение</Link>
           <Link to="/chapter1" className="tab-link">1. ТЕОРИЯ ФОРМАЛЬНЫХ ГРАММАТИК И ЯЗЫКОВ</Link>
           <Link to="/chapter2" className="tab-link">2. ТЕОРИЯ ТРАНСЛЯЦИИ</Link>
+          <Link to="/chapter3" className="tab-link">3. ОРГАНИЗАЦИЯ ТАБЛИЦ СИМВОЛОВ</Link>
         </nav>
       </div>
     </div>

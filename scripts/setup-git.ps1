@@ -18,3 +18,6 @@ Write-Host "Git репозиторий настроен!" -ForegroundColor Green
 Write-Host "Ветки созданы: main, develop, feature/ui-components" -ForegroundColor Green
 
 
+
+
+
