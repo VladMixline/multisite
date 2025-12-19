@@ -6,7 +6,7 @@
 .breadcrumb {
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #5a6a7a;
 }
 
 .breadcrumb a {
@@ -21,7 +21,7 @@
 .chapter h1 {
   font-size: 2.2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #2c3e50;
   border-bottom: 3px solid #007bff;
   padding-bottom: 0.5rem;
 }
@@ -29,7 +29,7 @@
 .chapter-content {
   margin-bottom: 2rem;
   line-height: 1.8;
-  color: #444;
+  color: #34495e;
 }
 
 .chapter-content p {
@@ -47,12 +47,12 @@
 .chapter-section h2 {
   font-size: 1.6rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #2c3e50;
 }
 
 .section-content {
   line-height: 1.8;
-  color: #444;
+  color: #34495e;
   margin-bottom: 1.5rem;
 }
 
@@ -72,7 +72,7 @@
 .questions h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #2c3e50;
 }
 
 .questions ol {
@@ -82,7 +82,7 @@
 
 .questions li {
   margin-bottom: 0.8rem;
-  color: #444;
+  color: #34495e;
 }
 
 .chapter-navigation {
@@ -104,6 +104,8 @@
 .btn:hover {
   background: #0056b3;
 }
+
+
 
 
 

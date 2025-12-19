@@ -25,14 +25,14 @@
 .chapter1 h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 800;
   text-align: center;
   padding-bottom: 1rem;
-  border-bottom: 3px solid rgba(102, 126, 234, 0.3);
+  border-bottom: 3px solid rgba(90, 111, 168, 0.3);
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -42,15 +42,15 @@
   padding: 2rem;
   border-radius: 20px;
   margin-bottom: 2rem;
-  border-left: 5px solid #667eea;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+  border-left: 5px solid #5a6fa8;
+  box-shadow: 0 2px 12px rgba(90, 111, 168, 0.15);
   animation: slideInRight 0.6s ease-out;
 }
 
 .chapter-plan h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -60,7 +60,7 @@
 .chapter-plan ol {
   margin-left: 1.5rem;
   line-height: 2;
-  color: #444;
+  color: #34495e;
 }
 
 .chapter-plan ol li {
@@ -73,7 +73,7 @@
   padding: 2rem;
   border-radius: 20px;
   margin-bottom: 2rem;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 12px rgba(90, 111, 168, 0.15);
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -81,7 +81,7 @@
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   margin-top: 0;
-  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -92,14 +92,14 @@
   font-size: 1.4rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: #667eea;
+  color: #5a6fa8;
   font-weight: 600;
 }
 
 .chapter-content p {
   margin-bottom: 1.5rem;
   line-height: 1.8;
-  color: #444;
+  color: #34495e;
   text-align: justify;
 }
 
@@ -107,7 +107,7 @@
   text-align: center;
   margin: 2rem 0;
   padding: 1.5rem;
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(90, 111, 168, 0.05);
   border-radius: 15px;
   animation: fadeInUp 0.8s ease-out;
 }
@@ -115,27 +115,27 @@
 .chapter-image {
   max-width: 100%;
   height: auto;
-  border: 3px solid rgba(102, 126, 234, 0.3);
+  border: 3px solid rgba(90, 111, 168, 0.3);
   border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 32px rgba(90, 111, 168, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .chapter-image:hover {
   transform: scale(1.02);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 12px 40px rgba(90, 111, 168, 0.4);
 }
 
 .image-caption {
   margin-top: 1rem;
   font-style: italic;
-  color: #667eea;
+  color: #5a6fa8;
   font-size: 0.95rem;
   font-weight: 500;
 }
 
 .control-questions-btn {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #a87fa8 0%, #c88fa8 100%);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -144,7 +144,7 @@
   font-weight: 600;
   cursor: pointer;
   margin: 2rem 0;
-  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.4);
+  box-shadow: 0 4px 20px rgba(200, 143, 168, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -169,8 +169,8 @@
 
 .control-questions-btn:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
-  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+  box-shadow: 0 8px 30px rgba(200, 143, 168, 0.6);
+  background: linear-gradient(135deg, #c88fa8 0%, #a87fa8 100%);
 }
 
 .control-questions-content {
@@ -179,9 +179,9 @@
   padding: 2rem;
   border-radius: 20px;
   margin-top: 1rem;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 12px rgba(90, 111, 168, 0.15);
   animation: fadeInUp 0.5s ease-out;
-  border: 2px solid rgba(102, 126, 234, 0.2);
+  border: 2px solid rgba(90, 111, 168, 0.2);
 }
 
 .control-questions-content ul {
@@ -193,10 +193,10 @@
 .control-questions-content li {
   padding: 1rem;
   margin-bottom: 0.8rem;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
-  border-left: 4px solid #667eea;
+  background: linear-gradient(135deg, rgba(90, 111, 168, 0.1) 0%, rgba(168, 127, 168, 0.1) 100%);
+  border-left: 4px solid #5a6fa8;
   border-radius: 10px;
-  color: #444;
+  color: #34495e;
   line-height: 1.6;
   transition: all 0.3s;
   animation: slideInRight 0.4s ease-out backwards;
@@ -211,28 +211,28 @@
 
 .control-questions-content li:hover {
   transform: translateX(10px);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(240, 147, 251, 0.2) 100%);
-  border-left-color: #f093fb;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  background: linear-gradient(135deg, rgba(90, 111, 168, 0.2) 0%, rgba(168, 127, 168, 0.2) 100%);
+  border-left-color: #a87fa8;
+  box-shadow: 0 4px 15px rgba(90, 111, 168, 0.2);
 }
 
 .chapter-navigation {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 2px solid rgba(102, 126, 234, 0.3);
+  border-top: 2px solid rgba(90, 111, 168, 0.3);
   text-align: center;
 }
 
 .btn {
   display: inline-block;
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5a6fa8 0%, #8a7fa8 100%);
   color: white;
   text-decoration: none;
   border-radius: 50px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 600;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 10px rgba(90, 111, 168, 0.25);
   position: relative;
   overflow: hidden;
 }
@@ -254,6 +254,8 @@
 
 .btn:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
-  background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+  box-shadow: 0 8px 30px rgba(90, 111, 168, 0.6);
+  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
 }
+
+

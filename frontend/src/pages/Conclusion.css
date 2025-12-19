@@ -6,7 +6,7 @@
 .breadcrumb {
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #5a6a7a;
 }
 
 .breadcrumb a {
@@ -21,14 +21,14 @@
 .conclusion h1 {
   font-size: 2.2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #2c3e50;
   border-bottom: 3px solid #007bff;
   padding-bottom: 0.5rem;
 }
 
 .conclusion-content {
   line-height: 1.8;
-  color: #444;
+  color: #34495e;
   text-align: justify;
 }
 
@@ -55,6 +55,8 @@
 .btn:hover {
   background: #0056b3;
 }
+
+
 
 
 
