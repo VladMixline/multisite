@@ -15,6 +15,7 @@ function Home({ chapters }) {
           <Link to="/chapter3" className="tab-link">3. ОРГАНИЗАЦИЯ ТАБЛИЦ СИМВОЛОВ</Link>
           <Link to="/chapter4" className="tab-link">4. ОПТИМИЗАЦИЯ КОДА</Link>
           <Link to="/chapter5" className="tab-link">5. ОРГАНИЗАЦИЯ ДИАЛОГА В ВЫЧИСЛИТЕЛЬНЫХ СИСТЕМАХ</Link>
+          <Link to="/exercises" className="tab-link">УПРАЖНЕНИЯ</Link>
         </nav>
       </div>
     </div>
