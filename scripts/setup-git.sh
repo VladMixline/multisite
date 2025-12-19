@@ -18,3 +18,4 @@ git checkout main
 echo "Git репозиторий настроен!"
 echo "Ветки созданы: main, develop, feature/ui-components"
 
+

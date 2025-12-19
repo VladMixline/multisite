@@ -40,3 +40,4 @@ if ($status) {
     Write-Host "Нет изменений для коммита" -ForegroundColor Gray
 }
 
+

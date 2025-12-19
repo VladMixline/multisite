@@ -57,3 +57,4 @@ https://github.com/VladMixline/multisite
 - Если push не удался (проблемы с сетью), коммит все равно сохраняется локально
 - При необходимости можно выполнить `git push origin main` вручную
 
+

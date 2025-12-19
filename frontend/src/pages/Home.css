@@ -12,7 +12,28 @@
 .subtitle {
   font-size: 1.2rem;
   color: #666;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+.tabs-nav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.tab-link {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+  font-size: 1.1rem;
+}
+
+.tab-link:hover {
+  background: #0056b3;
 }
 
 .chapters-nav {
@@ -54,4 +75,5 @@
   border-color: #007bff;
   transform: translateX(5px);
 }
+
 

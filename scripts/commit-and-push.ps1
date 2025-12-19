@@ -40,3 +40,4 @@ function Commit-AndPush {
 # Экспорт функции для использования в других скриптах
 Export-ModuleMember -Function Commit-AndPush
 
+

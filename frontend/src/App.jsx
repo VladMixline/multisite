@@ -67,7 +67,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
-          <Route path="/introduction" element={<Introduction introductionText={introductionText} />} />
+          <Route path="/introduction" element={<Introduction />} />
           <Route path="/chapter/:chapterNumber" element={<Chapter chapters={chapters} />} />
           <Route path="/exercises" element={<Exercises chapters={chapters} />} />
           <Route path="/variants" element={<Variants chapters={chapters} />} />

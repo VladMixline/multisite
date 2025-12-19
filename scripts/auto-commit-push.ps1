@@ -57,3 +57,4 @@ if ($status) {
     Write-Host "[AUTO-COMMIT] Нет изменений для коммита" -ForegroundColor Gray
 }
 
+
