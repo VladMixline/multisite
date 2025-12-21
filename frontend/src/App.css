@@ -14,20 +14,11 @@
   padding: 0 20px;
   width: 100%;
   margin-left: 300px;
-  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.App:has(.progress-tracker.collapsed) .container {
-  margin-left: 40px;
 }
 
 @media (max-width: 1024px) {
   .container {
-    margin-left: 280px;
-  }
-  
-  .App:has(.progress-tracker.collapsed) .container {
-    margin-left: 20px;
+    margin-left: 300px;
   }
 }
 
@@ -35,10 +26,6 @@
   .container {
     margin-left: 0;
     padding: 0 15px;
-  }
-  
-  .App:has(.progress-tracker.collapsed) .container {
-    margin-left: 0;
   }
 }
 
