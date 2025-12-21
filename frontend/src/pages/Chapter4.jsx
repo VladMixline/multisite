@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Chapter4.css'
 
 function Chapter4() {
   const [showQuestions, setShowQuestions] = useState(false)
+  const [isTestOpen, setIsTestOpen] = useState(false)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [selectedAnswers, setSelectedAnswers] = useState({})
+  const [showResults, setShowResults] = useState(false)
+  const [shuffledOptionsByQuestionId, setShuffledOptionsByQuestionId] = useState({})
+  const audioRef = useRef({ audioContext: null, oscillator: null })
   
   const questions = [
     "В чём заключается основная цель фазы оптимизации?",
@@ -16,6 +22,243 @@ function Chapter4() {
     "Что такое общие подвыражения?",
     "Что такое инварианты циклов?"
   ]
+
+  const testQuestions = [
+    {
+      id: 1,
+      question: 'В чём заключается основная цель фазы оптимизации кода?',
+      options: {
+        A: 'Упрощение синтаксического анализа',
+        B: 'Уменьшение времени выполнения и/или объёма кода',
+        C: 'Преобразование исходного кода в машинный',
+        D: 'Проверка корректности программы',
+      },
+      correct: 'B',
+    },
+    {
+      id: 2,
+      question: 'Какие оптимизации не зависят от архитектуры конкретной ЭВМ?',
+      options: {
+        A: 'Машинно-зависимые',
+        B: 'Аппаратные',
+        C: 'Машинно-независимые',
+        D: 'Регистровые',
+      },
+      correct: 'C',
+    },
+    {
+      id: 3,
+      question: 'Какие оптимизации учитывают особенности конкретной вычислительной машины?',
+      options: {
+        A: 'Машинно-независимые',
+        B: 'Логические',
+        C: 'Машинно-зависимые',
+        D: 'Семантические',
+      },
+      correct: 'C',
+    },
+    {
+      id: 4,
+      question: 'Должны ли преобразования, выполняемые при оптимизации, сохранять эквивалентность программы?',
+      options: {
+        A: 'Нет, допустимы изменения результата',
+        B: 'Да, программа должна быть эквивалентной исходной',
+        C: 'Только для машинно-зависимых оптимизаций',
+        D: 'Только для циклов',
+      },
+      correct: 'B',
+    },
+    {
+      id: 5,
+      question: 'Что является критерием эффективности оптимизации кода?',
+      options: {
+        A: 'Количество строк исходного текста',
+        B: 'Время компиляции',
+        C: 'Время выполнения и объём кода',
+        D: 'Простота алгоритма',
+      },
+      correct: 'C',
+    },
+    {
+      id: 6,
+      question: 'Что такое общие подвыражения?',
+      options: {
+        A: 'Выражения, встречающиеся только один раз',
+        B: 'Выражения, вычисляемые внутри цикла',
+        C: 'Выражения, вычисляющие одно и то же значение несколько раз',
+        D: 'Выражения с константами',
+      },
+      correct: 'C',
+    },
+    {
+      id: 7,
+      question: 'В чём заключается оптимизация общих подвыражений?',
+      options: {
+        A: 'Удаление лишних переменных',
+        B: 'Замена выражений константами',
+        C: 'Повторное использование ранее вычисленного результата',
+        D: 'Перенос выражений в начало программы',
+      },
+      correct: 'C',
+    },
+    {
+      id: 8,
+      question: 'На каком представлении программы обычно обнаруживаются общие подвыражения?',
+      options: {
+        A: 'Исходный текст',
+        B: 'Машинный код',
+        C: 'Промежуточное представление',
+        D: 'Объектный код',
+      },
+      correct: 'C',
+    },
+    {
+      id: 9,
+      question: 'Что такое инвариант цикла?',
+      options: {
+        A: 'Выражение, изменяющееся при каждой итерации',
+        B: 'Выражение, значение которого не меняется внутри цикла',
+        C: 'Условие выхода из цикла',
+        D: 'Тело цикла',
+      },
+      correct: 'B',
+    },
+    {
+      id: 10,
+      question: 'В чём состоит оптимизация инвариантов цикла?',
+      options: {
+        A: 'Удаление цикла',
+        B: 'Перенос вычислений за пределы цикла',
+        C: 'Замена цикла рекурсией',
+        D: 'Дублирование вычислений',
+      },
+      correct: 'B',
+    },
+    {
+      id: 11,
+      question: 'Почему оптимизация инвариантов цикла особенно эффективна?',
+      options: {
+        A: 'Циклы редко используются',
+        B: 'Циклы выполняются один раз',
+        C: 'Основное время работы программы приходится на циклы',
+        D: 'Уменьшается объём исходного кода',
+      },
+      correct: 'C',
+    },
+    {
+      id: 12,
+      question: 'К какому типу оптимизаций относится удаление общих подвыражений?',
+      options: {
+        A: 'Машинно-зависимым',
+        B: 'Машинно-независимым',
+        C: 'Аппаратным',
+        D: 'Синтаксическим',
+      },
+      correct: 'B',
+    },
+  ]
+
+  const shuffleArray = (arr) => {
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  const openTest = () => {
+    setSelectedAnswers({})
+    setShowResults(false)
+    setIsTestOpen(true)
+
+    const shuffled = {}
+    testQuestions.forEach((q) => {
+      shuffled[q.id] = shuffleArray(Object.entries(q.options))
+    })
+    setShuffledOptionsByQuestionId(shuffled)
+  }
+
+  const stopMusic = () => {
+    const { oscillator, audioContext } = audioRef.current || {}
+    try {
+      if (oscillator) oscillator.stop()
+    } catch {
+      // ignore
+    }
+    try {
+      if (audioContext) audioContext.close()
+    } catch {
+      // ignore
+    }
+    audioRef.current = { audioContext: null, oscillator: null }
+    setIsMusicPlaying(false)
+  }
+
+  const startMusic = async () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = 220
+      oscillator.type = 'sine'
+      gainNode.gain.value = 0.03
+
+      oscillator.start()
+      audioRef.current = { audioContext, oscillator }
+      setIsMusicPlaying(true)
+    } catch (e) {
+      console.log('Audio not supported', e)
+    }
+  }
+
+  const handleMusicToggle = () => {
+    if (isMusicPlaying) {
+      stopMusic()
+      return
+    }
+    startMusic()
+  }
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: answer,
+    }))
+  }
+
+  const handleSubmitTest = () => {
+    setShowResults(true)
+  }
+
+  const handleCloseTest = () => {
+    setIsTestOpen(false)
+    setShowResults(false)
+    setSelectedAnswers({})
+    setShuffledOptionsByQuestionId({})
+    stopMusic()
+  }
+
+  const getScore = () => {
+    let correct = 0
+    testQuestions.forEach((q) => {
+      if (selectedAnswers[q.id] === q.correct) {
+        correct++
+      }
+    })
+    return correct
+  }
+
+  const allAnswered = testQuestions.every((q) => selectedAnswers[q.id])
+
+  useEffect(() => {
+    return () => stopMusic()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="chapter4">
@@ -121,7 +364,88 @@ x [ i , 2*j-1 ] := y [ i , 2*j ];
               </ol>
             </div>
           )}
+
+          <button className="btn test-btn" onClick={openTest}>
+            Пройти тест
+          </button>
         </div>
+
+        {isTestOpen && (
+          <div className="test-modal-overlay" onClick={handleCloseTest}>
+            <div className="test-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="test-modal-header">
+                <h2>Тест по теме «Оптимизация кода»</h2>
+                <button className="close-btn" onClick={handleCloseTest}>×</button>
+              </div>
+
+              <div className="test-music-control">
+                <button
+                  className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}
+                  onClick={handleMusicToggle}
+                >
+                  {isMusicPlaying ? '🔊 Музыка включена' : '🔇 Музыка выключена'}
+                </button>
+              </div>
+
+              <div className="test-content">
+                {testQuestions.map((q) => (
+                  <div key={q.id} className="test-question">
+                    <h3>{q.id}. {q.question}</h3>
+                    <div className="test-options">
+                      {(shuffledOptionsByQuestionId[q.id] || Object.entries(q.options)).map(([key, value]) => {
+                        const isSelected = selectedAnswers[q.id] === key
+                        const isCorrect = q.correct === key
+                        const showAnswer = showResults
+                        return (
+                          <label
+                            key={key}
+                            className={`test-option ${isSelected ? 'selected' : ''} ${showAnswer && isCorrect ? 'correct' : ''} ${showAnswer && isSelected && !isCorrect ? 'incorrect' : ''}`}
+                          >
+                            <input
+                              type="radio"
+                              name={`question-${q.id}`}
+                              value={key}
+                              checked={isSelected}
+                              onChange={() => handleAnswerSelect(q.id, key)}
+                              disabled={showResults}
+                            />
+                            <span>{value}</span>
+                            {showAnswer && isCorrect && <span className="correct-mark">✓ Правильный ответ</span>}
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="test-footer">
+                {!showResults ? (
+                  <button
+                    className="btn submit-btn"
+                    onClick={handleSubmitTest}
+                    disabled={!allAnswered}
+                  >
+                    Завершить тест
+                  </button>
+                ) : (
+                  <div className="test-results">
+                    <h3>Результаты теста</h3>
+                    <p className="test-score">
+                      Правильных ответов: {getScore()} из {testQuestions.length}
+                    </p>
+                    <p className="test-percentage">
+                      {Math.round((getScore() / testQuestions.length) * 100)}%
+                    </p>
+                    <button className="btn" onClick={handleCloseTest}>
+                      Закрыть
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         
         <div className="chapter-navigation">
           <Link to="/" className="btn">На главную</Link>
