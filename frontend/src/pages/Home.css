@@ -4,24 +4,13 @@
   animation: fadeInUp 0.8s ease-out;
 }
 
-.home h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-align: center;
-  font-weight: 800;
-  animation: fadeInUp 0.6s ease-out;
-}
 
 .subtitle {
   font-size: 2rem;
   color: #3d4a5c;
   margin-bottom: 3rem;
   text-align: left;
-  font-weight: 600;
+  font-weight: 400;
   animation: fadeInUp 0.8s ease-out;
 }
 
