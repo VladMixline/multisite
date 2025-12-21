@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { getOverallProgress, getChapterProgress } from '../utils/progressTracker'
 import './ProgressTracker.css'
 
-function ProgressTracker() {
+function ProgressTracker({ isVisible, onToggleVisibility }) {
   const [progress, setProgress] = useState(getOverallProgress())
   const [isExpanded, setIsExpanded] = useState(true)
   const location = useLocation()
@@ -42,6 +42,10 @@ function ProgressTracker() {
     return 'not-viewed'
   }
 
+  if (!isVisible) {
+    return null
+  }
+
   return (
     <>
       <div className={`progress-tracker ${isExpanded ? 'expanded' : 'collapsed'}`}>
@@ -49,6 +53,7 @@ function ProgressTracker() {
           className={`progress-toggle ${isExpanded ? 'expanded' : 'collapsed'}`}
           onClick={() => setIsExpanded(!isExpanded)}
           aria-label={isExpanded ? 'Свернуть прогресс' : 'Развернуть прогресс'}
+          title={isExpanded ? 'Свернуть' : 'Развернуть'}
         >
           {isExpanded ? '◀' : '▶'}
         </button>

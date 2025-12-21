@@ -24,6 +24,7 @@ function App() {
   const [courseworkText, setCourseworkText] = useState('')
   const [conclusionText, setConclusionText] = useState('')
   const [loading, setLoading] = useState(true)
+  const [isProgressVisible, setIsProgressVisible] = useState(true)
   
   useEffect(() => {
     async function loadData() {
@@ -70,8 +71,11 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="App">
-        <Header />
-        <ProgressTracker />
+        <Header 
+          onToggleProgress={() => setIsProgressVisible(!isProgressVisible)}
+          isProgressVisible={isProgressVisible}
+        />
+        <ProgressTracker isVisible={isProgressVisible} />
         <Routes>
           <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
           <Route path="/introduction" element={<Introduction />} />
