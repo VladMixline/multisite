@@ -71,10 +71,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="App">
-        <Header 
-          onToggleProgress={() => setIsProgressVisible(!isProgressVisible)}
-          isProgressVisible={isProgressVisible}
-        />
+        <Header />
         <ProgressTracker isVisible={isProgressVisible} />
         <Routes>
           <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />

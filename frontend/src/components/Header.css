@@ -73,27 +73,3 @@
   color: #8a7fa8;
   transform: translateY(-1px);
 }
-
-.progress-toggle-btn {
-  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
-  color: #FFF8E7;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(90, 111, 168, 0.3);
-  white-space: nowrap;
-}
-
-.progress-toggle-btn:hover {
-  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(90, 111, 168, 0.4);
-}
-
-.progress-toggle-btn:active {
-  transform: translateY(0);
-}

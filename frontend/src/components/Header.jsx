@@ -1,6 +1,6 @@
 import './Header.css'
 
-function Header({ onToggleProgress, isProgressVisible }) {
+function Header() {
   return (
     <header className="header">
       <div className="container">
@@ -10,14 +10,6 @@ function Header({ onToggleProgress, isProgressVisible }) {
         </div>
         <nav className="nav">
           <a href="#" className="nav-link">Главная</a>
-          <button 
-            className="progress-toggle-btn"
-            onClick={onToggleProgress}
-            title={isProgressVisible ? 'Скрыть прогресс' : 'Показать прогресс'}
-            aria-label={isProgressVisible ? 'Скрыть прогресс' : 'Показать прогресс'}
-          >
-            {isProgressVisible ? '📊 Скрыть прогресс' : '📊 Показать прогресс'}
-          </button>
         </nav>
       </div>
     </header>
