@@ -52,3 +52,4 @@
 2. Или используйте: `Get-Process | Where-Object {$_.CommandLine -like "*auto-commit*"} | Stop-Process`
 
 
+

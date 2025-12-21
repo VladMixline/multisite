@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './Header.css'
 
-function Header({ onToggleProgress, isProgressVisible }) {
+function Header() {
   const headerRef = useRef(null)
 
   useEffect(() => {
@@ -26,15 +26,6 @@ function Header({ onToggleProgress, isProgressVisible }) {
         </div>
         <nav className="nav">
           <a href="#" className="nav-link">Главная</a>
-          <button
-            type="button"
-            className="progress-toggle-btn"
-            onClick={onToggleProgress}
-            aria-label={isProgressVisible ? 'Скрыть прогресс' : 'Показать прогресс'}
-            title={isProgressVisible ? 'Скрыть прогресс' : 'Показать прогресс'}
-          >
-            {isProgressVisible ? '📊 Скрыть прогресс' : '📊 Показать прогресс'}
-          </button>
         </nav>
       </div>
     </header>

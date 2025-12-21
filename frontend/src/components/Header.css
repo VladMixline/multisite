@@ -73,30 +73,3 @@
   color: #8a7fa8;
   transform: translateY(-1px);
 }
-
-.progress-toggle-btn {
-  background: linear-gradient(135deg, #5f6368 0%, #8a8f98 100%);
-  color: #FFF8E7;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(70, 74, 80, 0.45);
-  /* отключаем глобальные анимации/transition/transform для button из App.css */
-  animation: none !important;
-  transition: none !important;
-  transform: none !important;
-}
-
-.progress-toggle-btn::before {
-  content: none !important;
-}
-
-.progress-toggle-btn:hover {
-  background: linear-gradient(135deg, #4b4f55 0%, #7a808a 100%);
-  box-shadow: 0 6px 16px rgba(70, 74, 80, 0.55);
-  transform: none !important;
-}
