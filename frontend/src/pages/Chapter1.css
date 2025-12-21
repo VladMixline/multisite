@@ -314,19 +314,18 @@
 
 .test-modal-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 2rem 2rem 1rem;
-  border-bottom: 2px solid rgba(90, 111, 168, 0.2);
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
 }
 
 .test-modal-header h2 {
   margin: 0;
   font-size: 1.6rem;
-  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: white;
 }
 
 .close-btn {
