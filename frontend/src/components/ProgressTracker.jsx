@@ -49,20 +49,19 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
   return (
     <>
       <div className={`progress-tracker ${isExpanded ? 'expanded' : 'collapsed'}`}>
-        <button 
-          className={`progress-toggle ${isExpanded ? 'expanded' : 'collapsed'}`}
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-label={isExpanded ? 'Свернуть прогресс' : 'Развернуть прогресс'}
-          title={isExpanded ? 'Свернуть' : 'Развернуть'}
-        >
-          {isExpanded ? '◀' : '▶'}
-        </button>
-      
-      {isExpanded && (
-        <>
-          <div className="progress-header">
-            <h3 className="progress-header-title">Прогресс изучения</h3>
-          </div>
+        {isExpanded && (
+          <>
+            <div className="progress-header">
+              <h3 className="progress-header-title">Прогресс изучения</h3>
+              <button 
+                className="progress-toggle-header"
+                onClick={() => setIsExpanded(!isExpanded)}
+                aria-label="Свернуть прогресс"
+                title="Свернуть"
+              >
+                ◀
+              </button>
+            </div>
           <div className="progress-content">
           
           {/* Общая статистика */}

@@ -1,9 +1,9 @@
 .progress-tracker {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 80px;
   width: 280px;
-  height: 100vh;
+  height: calc(100vh - 80px);
   background: rgba(255, 248, 231, 0.95);
   backdrop-filter: blur(10px);
   border-right: 2px solid rgba(90, 111, 168, 0.15);
@@ -61,7 +61,9 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .progress-header-title {
@@ -69,7 +71,55 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
+  flex: 1;
   text-align: center;
+}
+
+.progress-toggle-header {
+  background: rgba(255, 248, 231, 0.2);
+  color: #FFF8E7;
+  border: 1px solid rgba(255, 248, 231, 0.3);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+.progress-toggle-header:hover {
+  background: rgba(255, 248, 231, 0.3);
+  transform: scale(1.1);
+}
+
+.progress-toggle-collapsed {
+  position: fixed;
+  left: 0;
+  top: 100px;
+  width: 30px;
+  height: 40px;
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
+  color: #FFF8E7;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 5px rgba(90, 111, 168, 0.2);
+  z-index: 998;
+}
+
+.progress-toggle-collapsed:hover {
+  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
+  transform: translateX(2px);
 }
 
 .progress-content {
