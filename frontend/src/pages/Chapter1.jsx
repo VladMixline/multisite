@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Chapter1.css'
 
 function Chapter1() {
   const [showQuestions, setShowQuestions] = useState(false)
+  const [isTestOpen, setIsTestOpen] = useState(false)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [selectedAnswers, setSelectedAnswers] = useState({})
+  const [showResults, setShowResults] = useState(false)
+  const audioRef = useRef({ audioContext: null, oscillator: null })
   
   const questions = [
     "Что такое синтаксис языка?",
@@ -13,6 +18,143 @@ function Chapter1() {
     "Для чего используются синтаксические деревья?",
     "Как называется транслятор, у которого функциональное назначение – перевод программы с языка низкого уровня в машинные коды?"
   ]
+
+  const testQuestions = [
+    {
+      id: 1,
+      question: 'Что такое синтаксис языка?',
+      options: {
+        'а': 'Набор команд машинного кода',
+        'б': 'Правила записи правильных предложений языка',
+        'в': 'Значение операторов и выражений',
+        'г': 'Способ выполнения программы',
+      },
+      correct: 'б',
+    },
+    {
+      id: 2,
+      question: 'Что из перечисленного описывает грамматика языка?',
+      options: {
+        'а': 'Семантику операторов',
+        'б': 'Алгоритмы выполнения программы',
+        'в': 'Синтаксис языка',
+        'г': 'Оптимизацию кода',
+      },
+      correct: 'в',
+    },
+    {
+      id: 3,
+      question: 'Как формально определяется грамматика языка?',
+      options: {
+        'а': 'Как тройка (A, B, C)',
+        'б': 'Как множество символов алфавита',
+        'в': 'Как четвёрка (N, T, P, S)',
+        'г': 'Как набор машинных инструкций',
+      },
+      correct: 'в',
+    },
+    {
+      id: 4,
+      question: 'Какая грамматика используется для описания большинства языков программирования?',
+      options: {
+        'а': 'Регулярная',
+        'б': 'Контекстно-зависимая',
+        'в': 'Грамматика без ограничений',
+        'г': 'Контекстно-свободная',
+      },
+      correct: 'г',
+    },
+    {
+      id: 5,
+      question: 'Для чего используются синтаксические деревья?',
+      options: {
+        'а': 'Для хранения машинного кода',
+        'б': 'Для представления структуры предложения языка',
+        'в': 'Для выполнения программы',
+        'г': 'Для оптимизации памяти',
+      },
+      correct: 'б',
+    },
+  ]
+
+  const stopMusic = () => {
+    const { oscillator, audioContext } = audioRef.current || {}
+    try {
+      if (oscillator) oscillator.stop()
+    } catch {
+      // ignore
+    }
+    try {
+      if (audioContext) audioContext.close()
+    } catch {
+      // ignore
+    }
+    audioRef.current = { audioContext: null, oscillator: null }
+    setIsMusicPlaying(false)
+  }
+
+  const startMusic = async () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = 220
+      oscillator.type = 'sine'
+      gainNode.gain.value = 0.03
+
+      oscillator.start()
+      audioRef.current = { audioContext, oscillator }
+      setIsMusicPlaying(true)
+    } catch (e) {
+      console.log('Audio not supported', e)
+    }
+  }
+
+  const handleMusicToggle = () => {
+    if (isMusicPlaying) {
+      stopMusic()
+      return
+    }
+    startMusic()
+  }
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: answer,
+    }))
+  }
+
+  const handleSubmitTest = () => {
+    setShowResults(true)
+  }
+
+  const handleCloseTest = () => {
+    setIsTestOpen(false)
+    setShowResults(false)
+    setSelectedAnswers({})
+    stopMusic()
+  }
+
+  const getScore = () => {
+    let correct = 0
+    testQuestions.forEach((q) => {
+      if (selectedAnswers[q.id] === q.correct) {
+        correct++
+      }
+    })
+    return correct
+  }
+
+  useEffect(() => {
+    return () => stopMusic()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className="chapter1">
       <div className="container">
@@ -163,23 +305,104 @@ function Chapter1() {
         </section>
 
         <div className="questions-section">
+          <button className="btn test-btn" onClick={() => setIsTestOpen(true)}>
+            Пройти тест
+          </button>
+
           <button 
-            className="questions-btn"
+            className="control-questions-btn"
             onClick={() => setShowQuestions(!showQuestions)}
           >
             {showQuestions ? '▼' : '▶'} Контрольные вопросы
           </button>
           
           {showQuestions && (
-            <div className="questions-content">
-              <ol className="questions-list">
+            <div className="control-questions-content">
+              <ul className="questions-list">
                 {questions.map((question, index) => (
                   <li key={index}>{question}</li>
                 ))}
-              </ol>
+              </ul>
             </div>
           )}
         </div>
+
+        {isTestOpen && (
+          <div className="test-modal-overlay" onClick={handleCloseTest}>
+            <div className="test-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="test-modal-header">
+                <h2>Тест по теме «Теория формальных грамматик и языков»</h2>
+                <button className="close-btn" onClick={handleCloseTest}>×</button>
+              </div>
+
+              <div className="test-music-control">
+                <button
+                  className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}
+                  onClick={handleMusicToggle}
+                >
+                  {isMusicPlaying ? '🔊 Музыка включена' : '🔇 Музыка выключена'}
+                </button>
+              </div>
+
+              <div className="test-content">
+                {testQuestions.map((q) => (
+                  <div key={q.id} className="test-question">
+                    <h3>{q.id}. {q.question}</h3>
+                    <div className="test-options">
+                      {Object.entries(q.options).map(([key, value]) => {
+                        const isSelected = selectedAnswers[q.id] === key
+                        const isCorrect = q.correct === key
+                        const showAnswer = showResults
+                        return (
+                          <label
+                            key={key}
+                            className={`test-option ${isSelected ? 'selected' : ''} ${showAnswer && isCorrect ? 'correct' : ''} ${showAnswer && isSelected && !isCorrect ? 'incorrect' : ''}`}
+                          >
+                            <input
+                              type="radio"
+                              name={`question-${q.id}`}
+                              value={key}
+                              checked={isSelected}
+                              onChange={() => handleAnswerSelect(q.id, key)}
+                              disabled={showResults}
+                            />
+                            <span>{key}) {value}</span>
+                            {showAnswer && isCorrect && <span className="correct-mark">✓ Правильный ответ</span>}
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="test-footer">
+                {!showResults ? (
+                  <button
+                    className="btn submit-btn"
+                    onClick={handleSubmitTest}
+                    disabled={Object.keys(selectedAnswers).length !== testQuestions.length}
+                  >
+                    Завершить тест
+                  </button>
+                ) : (
+                  <div className="test-results">
+                    <h3>Результаты теста</h3>
+                    <p className="test-score">
+                      Правильных ответов: {getScore()} из {testQuestions.length}
+                    </p>
+                    <p className="test-percentage">
+                      {Math.round((getScore() / testQuestions.length) * 100)}%
+                    </p>
+                    <button className="btn" onClick={handleCloseTest}>
+                      Закрыть
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         
         <div className="chapter-navigation">
           <Link to="/" className="btn">На главную</Link>
