@@ -40,6 +40,10 @@
   z-index: 998;
 }
 
+.progress-tracker.collapsed .progress-toggle {
+  left: 0;
+}
+
 .progress-toggle.collapsed {
   left: 0;
 }
@@ -57,6 +61,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  margin-top: 80px;
 }
 
 .progress-header-title {
