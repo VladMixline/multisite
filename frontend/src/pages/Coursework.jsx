@@ -458,7 +458,10 @@ s, x: вещественные;
           <h3>ВАРИАНТЫ ЗАДАНИЙ</h3>
           <div className="variants-grid">
             {variants.map((variant) => (
-              <div key={variant.id} className="variant-item">
+              <div 
+                key={variant.id} 
+                className={`variant-item ${selectedVariant !== null && selectedVariant !== variant.id ? 'collapsed' : ''} ${selectedVariant === variant.id ? 'expanded' : ''}`}
+              >
                 <button
                   className={`variant-btn ${selectedVariant === variant.id ? 'active' : ''}`}
                   onClick={() => handleVariantClick(variant.id)}
