@@ -389,7 +389,7 @@ function Chapter1() {
                               onChange={() => handleAnswerSelect(q.id, key)}
                               disabled={showResults}
                             />
-                            <span>{key}) {value}</span>
+                            <span>{value}</span>
                             {showAnswer && isCorrect && <span className="correct-mark">✓ Правильный ответ</span>}
                           </label>
                         )
