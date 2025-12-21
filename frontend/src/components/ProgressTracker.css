@@ -28,15 +28,15 @@
   position: fixed;
   left: 10px;
   top: calc(var(--site-header-height, 80px) + 20px);
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   /* дизайн как у кнопки в открытом прогрессе (progress-toggle-header) */
-  background: rgba(255, 248, 231, 0.2);
+  background: rgba(255, 248, 231, 0.38);
   color: #FFF8E7;
   border: 1px solid rgba(255, 248, 231, 0.3);
   border-radius: 12px;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +54,7 @@
 }
 
 .progress-open-button:hover {
-  background: rgba(255, 248, 231, 0.3);
+  background: rgba(255, 248, 231, 0.48);
   box-shadow: 0 6px 16px rgba(90, 111, 168, 0.45);
   transform: translateZ(0) !important;
 }
@@ -92,19 +92,20 @@
 }
 
 .progress-toggle-header {
-  background: rgba(255, 248, 231, 0.2);
+  background: rgba(255, 248, 231, 0.38);
   color: #FFF8E7;
   border: 1px solid rgba(255, 248, 231, 0.3);
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
+  border-radius: 12px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.35rem;
   margin-left: 1rem;
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(90, 111, 168, 0.35);
   will-change: auto;
   transform: translateZ(0);
   /* отключаем глобальные анимации/transition для button из App.css */
@@ -117,7 +118,8 @@
 }
 
 .progress-toggle-header:hover {
-  background: rgba(255, 248, 231, 0.3);
+  background: rgba(255, 248, 231, 0.48);
+  box-shadow: 0 6px 16px rgba(90, 111, 168, 0.45);
   transform: translateZ(0) !important;
 }
 
