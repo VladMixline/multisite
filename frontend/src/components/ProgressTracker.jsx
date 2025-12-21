@@ -60,6 +60,16 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
             {isExpanded ? '◀' : '▶'}
           </button>
         </div>
+        {!isExpanded && (
+          <button 
+            className="progress-open-button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-label="Открыть прогресс"
+            title="Открыть прогресс"
+          >
+            ▶
+          </button>
+        )}
         {isExpanded && (
           <>
           <div className="progress-content">
