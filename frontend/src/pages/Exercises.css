@@ -67,6 +67,73 @@
   margin-bottom: 0.8rem;
 }
 
+.exercises-section {
+  margin-bottom: 2rem;
+}
+
+.exercises-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.exercises-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-bottom: 2rem;
+}
+
+.exercise-btn {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  background: linear-gradient(135deg, #5a6fa8 0%, #8a7fa8 100%);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 10px rgba(90, 111, 168, 0.25);
+}
+
+.exercise-btn:hover {
+  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(90, 111, 168, 0.35);
+}
+
+.exercise-btn.active {
+  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
+  box-shadow: 0 4px 15px rgba(90, 111, 168, 0.4);
+}
+
+.code-block {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: rgba(90, 111, 168, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid #5a6fa8;
+}
+
+.code-block pre {
+  margin: 0;
+  color: #2c3e50;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .exercises-list {
   display: flex;
   flex-direction: column;
