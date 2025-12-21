@@ -1,47 +1,6 @@
-# React + Vite + Node.js Project
+# Сайт: Теория трансляции
 
-Проект с React фронтендом (Vite) и Node.js бэкендом.
-
-## Git Repository
-
-Репозиторий подключен к: https://github.com/VladMixline/multisite.git
-
-### Ветки проекта
-
-- `main` - основная ветка (production)
-- `develop` - ветка разработки
-- `feature/ui-components` - ветка для разработки UI компонентов
-
-### Автоматические коммиты и push
-
-**Система автоматических коммитов настроена!**
-
-После каждого изменения файлов используйте:
-
-```bash
-npm run commit "Описание изменений"
-```
-
-Или напрямую:
-
-```powershell
-.\scripts\auto-commit-push.ps1 "Описание изменений"
-```
-
-Этот скрипт автоматически:
-1. Добавит все изменения
-2. Создаст коммит
-3. Отправит изменения на GitHub (push)
-
-**Git Hook настроен:** После каждого коммита автоматически выполняется попытка push.
-
-### Ручной коммит
-
-```bash
-git add .
-git commit -m "Описание изменений"
-git push origin main
-```
+Проект сайта (React + Vite) и вспомогательного backend (Node.js/Express).
 
 ## Структура проекта
 
@@ -49,7 +8,6 @@ git push origin main
 webproj/
 ├── frontend/          # React + Vite приложение
 ├── backend/           # Node.js Express сервер
-├── scripts/           # Вспомогательные скрипты
 └── package.json       # Корневой package.json для управления всем проектом
 ```
 
@@ -98,4 +56,8 @@ npm run build
 ```
 
 Собранные файлы будут в `frontend/dist/`
+
+## Деплой (Vercel)
+
+В репозитории есть `vercel.json`, который указывает `outputDirectory: frontend/dist` и добавляет SPA-rewrite для React Router.
 
