@@ -42,6 +42,11 @@
 
 .progress-header.collapsed-header {
   position: relative;
+  transform: translateX(260px);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 60px;
+  padding: 1rem;
+  justify-content: center;
 }
 
 .progress-header-title {
