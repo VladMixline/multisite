@@ -27,8 +27,8 @@
 
 .progress-open-button {
   position: fixed;
-  left: 0;
-  top: 80px;
+  left: 10px;
+  top: 100px;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
