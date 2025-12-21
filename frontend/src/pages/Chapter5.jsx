@@ -207,10 +207,10 @@ function Chapter5() {
     <div className="chapter5">
       <div className="container">
         <nav className="breadcrumb">
-          <Link to="/">Главная</Link> / 5. ОРГАНИЗАЦИЯ ДИАЛОГА В ВЫЧИСЛИТЕЛЬНЫХ СИСТЕМАХ
+          <Link to="/">Главная</Link> / ОРГАНИЗАЦИЯ ДИАЛОГА В ВЫЧИСЛИТЕЛЬНЫХ СИСТЕМАХ
         </nav>
         
-        <h1>5. ОРГАНИЗАЦИЯ ДИАЛОГА В ВЫЧИСЛИТЕЛЬНЫХ СИСТЕМАХ</h1>
+        <h1>ОРГАНИЗАЦИЯ ДИАЛОГА В ВЫЧИСЛИТЕЛЬНЫХ СИСТЕМАХ</h1>
         
         <div className="chapter-plan">
           <h2>План:</h2>

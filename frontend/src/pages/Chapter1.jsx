@@ -182,10 +182,10 @@ function Chapter1() {
     <div className="chapter1">
       <div className="container">
         <nav className="breadcrumb">
-          <Link to="/">Главная</Link> / 1. ТЕОРИЯ ФОРМАЛЬНЫХ ГРАММАТИК И ЯЗЫКОВ
+          <Link to="/">Главная</Link> / ТЕОРИЯ ФОРМАЛЬНЫХ ГРАММАТИК И ЯЗЫКОВ
         </nav>
         
-        <h1>1. ТЕОРИЯ ФОРМАЛЬНЫХ ГРАММАТИК И ЯЗЫКОВ</h1>
+        <h1>ТЕОРИЯ ФОРМАЛЬНЫХ ГРАММАТИК И ЯЗЫКОВ</h1>
         
         <div className="chapter-plan">
           <h2>План:</h2>

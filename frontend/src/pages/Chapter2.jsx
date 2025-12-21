@@ -310,10 +310,10 @@ function Chapter2() {
     <div className="chapter2">
       <div className="container">
         <nav className="breadcrumb">
-          <Link to="/">Главная</Link> / 2. ТЕОРИЯ ТРАНСЛЯЦИИ
+          <Link to="/">Главная</Link> / ТЕОРИЯ ТРАНСЛЯЦИИ
         </nav>
         
-        <h1>2. ТЕОРИЯ ТРАНСЛЯЦИИ</h1>
+        <h1>ТЕОРИЯ ТРАНСЛЯЦИИ</h1>
         
         <div className="chapter-plan">
           <h2>План:</h2>

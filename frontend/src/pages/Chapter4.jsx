@@ -264,10 +264,10 @@ function Chapter4() {
     <div className="chapter4">
       <div className="container">
         <nav className="breadcrumb">
-          <Link to="/">Главная</Link> / 4. ОПТИМИЗАЦИЯ КОДА
+          <Link to="/">Главная</Link> / ОПТИМИЗАЦИЯ КОДА
         </nav>
         
-        <h1>4. ОПТИМИЗАЦИЯ КОДА</h1>
+        <h1>ОПТИМИЗАЦИЯ КОДА</h1>
         
         <div className="chapter-plan">
           <h2>План:</h2>

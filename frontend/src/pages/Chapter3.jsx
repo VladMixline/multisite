@@ -317,10 +317,10 @@ function Chapter3() {
     <div className="chapter3">
       <div className="container">
         <nav className="breadcrumb">
-          <Link to="/">Главная</Link> / 3. ОРГАНИЗАЦИЯ ТАБЛИЦ СИМВОЛОВ
+          <Link to="/">Главная</Link> / ОРГАНИЗАЦИЯ ТАБЛИЦ СИМВОЛОВ
         </nav>
         
-        <h1>3. ОРГАНИЗАЦИЯ ТАБЛИЦ СИМВОЛОВ</h1>
+        <h1>ОРГАНИЗАЦИЯ ТАБЛИЦ СИМВОЛОВ</h1>
         
         <div className="chapter-plan">
           <h2>План:</h2>
