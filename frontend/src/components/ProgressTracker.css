@@ -16,12 +16,12 @@
 }
 
 .progress-tracker.collapsed {
-  transform: translateX(-260px);
+  transform: translateX(-280px);
 }
 
 .progress-toggle {
-  position: absolute;
-  right: -30px;
+  position: fixed;
+  left: 280px;
   top: 100px;
   width: 30px;
   height: 40px;
@@ -34,9 +34,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 2px 0 5px rgba(90, 111, 168, 0.2);
   z-index: 998;
+}
+
+.progress-tracker.collapsed .progress-toggle {
+  left: 0;
 }
 
 .progress-toggle:hover {
