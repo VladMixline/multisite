@@ -115,7 +115,6 @@
 
 .progress-header.collapsed-header .progress-toggle-header:hover {
   background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
-  transform: scale(1.15);
   box-shadow: 0 6px 16px rgba(90, 111, 168, 0.5);
 }
 
