@@ -4,7 +4,9 @@ function Header() {
   return (
     <header className="header">
       <div className="container">
-        <h1 className="logo">Logo</h1>
+        <div className="logo" aria-label="Логотип">
+          <img src="/images/logo.png" alt="Логотип" className="logo-img" />
+        </div>
         <nav className="nav">
           <a href="#" className="nav-link">Главная</a>
           <a href="#" className="nav-link">О нас</a>
