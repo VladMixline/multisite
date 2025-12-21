@@ -8,6 +8,7 @@
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
     "build": "cd frontend && npm run build",
+    "postinstall": "npm ci --prefix frontend --include=dev && npm ci --prefix backend",
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "commit": "powershell -ExecutionPolicy Bypass -File scripts/auto-commit-push.ps1",
     "commit:msg": "powershell -ExecutionPolicy Bypass -File scripts/auto-commit-push.ps1"
