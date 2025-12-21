@@ -25,6 +25,7 @@ function App() {
   const [conclusionText, setConclusionText] = useState('')
   const [loading, setLoading] = useState(true)
   const [isProgressVisible, setIsProgressVisible] = useState(true)
+  const [isProgressExpanded, setIsProgressExpanded] = useState(true)
   
   useEffect(() => {
     async function loadData() {
@@ -60,7 +61,10 @@ function App() {
     return (
       <div className="App">
         <Header />
-        <div className="app-body">
+        <div
+          className="app-body"
+          style={{ '--progress-gutter': isProgressExpanded ? '300px' : '0px' }}
+        >
           <div className="container" style={{ padding: '2rem', textAlign: 'center' }}>
             <p>Загрузка...</p>
           </div>
@@ -74,8 +78,15 @@ function App() {
       <ScrollToTop />
       <div className="App">
         <Header />
-        <ProgressTracker isVisible={isProgressVisible} />
-        <div className="app-body">
+        <ProgressTracker
+          isVisible={isProgressVisible}
+          isExpanded={isProgressExpanded}
+          onExpandedChange={setIsProgressExpanded}
+        />
+        <div
+          className="app-body"
+          style={{ '--progress-gutter': isProgressExpanded ? '300px' : '0px' }}
+        >
           <Routes>
             <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
             <Route path="/introduction" element={<Introduction />} />

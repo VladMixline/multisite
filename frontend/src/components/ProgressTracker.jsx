@@ -3,10 +3,19 @@ import { Link, useLocation } from 'react-router-dom'
 import { getOverallProgress, getChapterProgress } from '../utils/progressTracker'
 import './ProgressTracker.css'
 
-function ProgressTracker({ isVisible, onToggleVisibility }) {
+function ProgressTracker({ isVisible, isExpanded: controlledExpanded, onExpandedChange }) {
   const [progress, setProgress] = useState(getOverallProgress())
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [uncontrolledExpanded, setUncontrolledExpanded] = useState(true)
   const location = useLocation()
+
+  const isExpanded = controlledExpanded ?? uncontrolledExpanded
+  const setExpanded = (next) => {
+    onExpandedChange?.(next)
+    // если компонент работает в неконтролируемом режиме — обновляем локально
+    if (controlledExpanded === undefined) {
+      setUncontrolledExpanded(next)
+    }
+  }
 
   useEffect(() => {
     // Обновляем прогресс при изменении маршрута
@@ -51,7 +60,7 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
       {!isExpanded && (
         <button 
           className="progress-open-button"
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => setExpanded(true)}
           aria-label="Открыть прогресс"
           title="Открыть прогресс"
         >
@@ -63,7 +72,7 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
           <h3 className="progress-header-title">Прогресс изучения</h3>
           <button 
             className="progress-toggle-header"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => setExpanded(!isExpanded)}
             aria-label={isExpanded ? 'Свернуть прогресс' : 'Развернуть прогресс'}
             title={isExpanded ? 'Свернуть' : 'Развернуть'}
           >

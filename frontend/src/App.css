@@ -9,8 +9,8 @@
 }
 
 .app-body {
-  /* Резервируем место под левую панель прогресса, чтобы контент не наезжал на неё */
-  padding-left: 300px;
+  /* Резервируем место под левую панель прогресса; значение задаём из App.jsx */
+  padding-left: var(--progress-gutter, 0px);
 }
 
 .container {
@@ -21,9 +21,7 @@
 }
 
 @media (max-width: 1024px) {
-  .app-body {
-    padding-left: 300px;
-  }
+  .app-body { padding-left: var(--progress-gutter, 0px); }
 }
 
 @media (max-width: 768px) {
