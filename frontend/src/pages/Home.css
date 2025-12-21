@@ -17,11 +17,11 @@
 }
 
 .subtitle {
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: #3d4a5c;
   margin-bottom: 3rem;
-  text-align: center;
-  font-weight: 400;
+  text-align: left;
+  font-weight: 600;
   animation: fadeInUp 0.8s ease-out;
 }
 

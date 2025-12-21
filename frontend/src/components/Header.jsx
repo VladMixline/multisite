@@ -6,6 +6,7 @@ function Header() {
       <div className="container">
         <div className="logo" aria-label="Логотип">
           <img src="/images/logo.png" alt="Логотип" className="logo-img" />
+          <span className="logo-title">Теория трансляции</span>
         </div>
         <nav className="nav">
           <a href="#" className="nav-link">Главная</a>
