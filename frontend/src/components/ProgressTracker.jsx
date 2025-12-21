@@ -43,14 +43,15 @@ function ProgressTracker() {
   }
 
   return (
-    <div className={`progress-tracker ${isExpanded ? 'expanded' : 'collapsed'}`}>
-      <button 
-        className="progress-toggle"
-        onClick={() => setIsExpanded(!isExpanded)}
-        aria-label={isExpanded ? 'Свернуть прогресс' : 'Развернуть прогресс'}
-      >
-        {isExpanded ? '◀' : '▶'}
-      </button>
+    <>
+      <div className={`progress-tracker ${isExpanded ? 'expanded' : 'collapsed'}`}>
+        <button 
+          className={`progress-toggle ${isExpanded ? 'expanded' : 'collapsed'}`}
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? 'Свернуть прогресс' : 'Развернуть прогресс'}
+        >
+          {isExpanded ? '◀' : '▶'}
+        </button>
       
       {isExpanded && (
         <div className="progress-content">
@@ -143,7 +144,8 @@ function ProgressTracker() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   )
 }
 

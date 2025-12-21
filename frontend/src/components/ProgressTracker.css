@@ -39,7 +39,7 @@
   z-index: 998;
 }
 
-.progress-tracker.collapsed .progress-toggle {
+.progress-toggle.collapsed {
   left: 0;
 }
 
