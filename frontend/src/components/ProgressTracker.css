@@ -28,14 +28,14 @@
   position: fixed;
   left: 10px;
   top: calc(var(--site-header-height, 80px) + 20px);
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
   color: #FFF8E7;
   border: none;
-  border-radius: 0 10px 10px 0;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,17 +91,17 @@
 }
 
 .progress-toggle-header {
-  background: rgba(255, 248, 231, 0.2);
+  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
   color: #FFF8E7;
-  border: 1px solid rgba(255, 248, 231, 0.3);
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
+  border: none;
+  border-radius: 12px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.35rem;
   margin-left: 1rem;
   flex-shrink: 0;
   will-change: auto;
@@ -109,6 +109,7 @@
   /* отключаем глобальные анимации/transition для button из App.css */
   animation: none !important;
   transition: none !important;
+  box-shadow: 0 4px 12px rgba(90, 111, 168, 0.35);
 }
 
 .progress-toggle-header::before {
@@ -116,25 +117,9 @@
 }
 
 .progress-toggle-header:hover {
-  background: rgba(255, 248, 231, 0.3);
-  transform: translateZ(0) !important;
-}
-
-.progress-header.collapsed-header .progress-toggle-header {
-  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
-  border: 2px solid rgba(255, 248, 231, 0.5);
-  width: 50px;
-  height: 50px;
-  font-size: 1.3rem;
-  box-shadow: 0 4px 12px rgba(90, 111, 168, 0.4);
-  margin-left: 0;
-  position: relative;
-  z-index: 1000;
-}
-
-.progress-header.collapsed-header .progress-toggle-header:hover {
   background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
   box-shadow: 0 6px 16px rgba(90, 111, 168, 0.5);
+  transform: translateZ(0) !important;
 }
 
 
