@@ -43,11 +43,19 @@
   z-index: 999;
   will-change: auto;
   transform: translateZ(0);
+  /* отключаем глобальные анимации/transition для button из App.css */
+  animation: none !important;
+  transition: none !important;
+}
+
+.progress-open-button::before {
+  content: none !important;
 }
 
 .progress-open-button:hover {
   background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
   box-shadow: 0 6px 16px rgba(90, 111, 168, 0.5);
+  transform: translateZ(0) !important;
 }
 
 
@@ -98,10 +106,18 @@
   flex-shrink: 0;
   will-change: auto;
   transform: translateZ(0);
+  /* отключаем глобальные анимации/transition для button из App.css */
+  animation: none !important;
+  transition: none !important;
+}
+
+.progress-toggle-header::before {
+  content: none !important;
 }
 
 .progress-toggle-header:hover {
   background: rgba(255, 248, 231, 0.3);
+  transform: translateZ(0) !important;
 }
 
 .progress-header.collapsed-header .progress-toggle-header {
