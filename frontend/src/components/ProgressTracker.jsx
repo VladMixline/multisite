@@ -150,7 +150,8 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
               })}
             </ul>
           </div>
-        </div>
+          </div>
+        </>
       )}
       </div>
     </>
