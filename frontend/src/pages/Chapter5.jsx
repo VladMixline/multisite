@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Chapter5.css'
 
 function Chapter5() {
   const [showQuestions, setShowQuestions] = useState(false)
+  const [isTestOpen, setIsTestOpen] = useState(false)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [selectedAnswers, setSelectedAnswers] = useState({})
+  const [showResults, setShowResults] = useState(false)
+  const [shuffledOptionsByQuestionId, setShuffledOptionsByQuestionId] = useState({})
+  const audioRef = useRef({ audioContext: null, oscillator: null })
   
   const questions = [
     "Каковы факторы успешного внедрения интерактивных систем?",
@@ -14,6 +20,188 @@ function Chapter5() {
     "Для чего нужны средства помощи в интерактивных системах?",
     "Для чего нужны средства поддержки в интерактивных системах?"
   ]
+
+  const testQuestions = [
+    {
+      id: 1,
+      question: 'В чём заключается основное условие правильной эксплуатации вычислительной системы?',
+      options: {
+        A: 'Использование современного оборудования',
+        B: 'Продуманная организация взаимодействия пользователя и системы',
+        C: 'Высокая скорость разработки',
+        D: 'Минимальный объём программ',
+      },
+      correct: 'B',
+    },
+    {
+      id: 2,
+      question: 'Кто считается непрофессиональным пользователем вычислительной системы?',
+      options: {
+        A: 'Программист',
+        B: 'Администратор',
+        C: 'Пользователь, обращающийся к системе эпизодически',
+        D: 'Разработчик системы',
+      },
+      correct: 'C',
+    },
+    {
+      id: 3,
+      question: 'Какие этапы включает проектирование интерактивной системы?',
+      options: {
+        A: 'Только программирование и тестирование',
+        B: 'Проектирование интерфейса и оптимизация',
+        C: 'Предложение, постановка задачи, разработка, тестирование, внедрение',
+        D: 'Анализ кода и сопровождение',
+      },
+      correct: 'C',
+    },
+    {
+      id: 4,
+      question: 'Какие основные типы диалога используются в интерактивных системах?',
+      options: {
+        A: 'Меню и командный',
+        B: 'Вопрос–ответ и графический',
+        C: 'Меню, вопрос–ответ, заполнение бланков, прямой режим',
+        D: 'Только меню',
+      },
+      correct: 'C',
+    },
+    {
+      id: 5,
+      question: 'Какой тип диалога наиболее подходит для непрофессиональных пользователей?',
+      options: {
+        A: 'Прямой режим',
+        B: 'Выбор из меню',
+        C: 'Командный язык',
+        D: 'Произвольный ввод',
+      },
+      correct: 'B',
+    },
+    {
+      id: 6,
+      question: 'Какой тип диалога предполагает использование языка команд?',
+      options: {
+        A: 'Заполнение бланка',
+        B: 'Вопрос–ответ',
+        C: 'Выбор из меню',
+        D: 'Прямой режим',
+      },
+      correct: 'D',
+    },
+    {
+      id: 7,
+      question: 'Для чего предназначены средства помощи и поддержки в интерактивных системах?',
+      options: {
+        A: 'Для увеличения производительности',
+        B: 'Для защиты данных',
+        C: 'Для помощи пользователю и обработки ошибок',
+        D: 'Для упрощения программирования',
+      },
+      correct: 'C',
+    },
+  ]
+
+  const shuffleArray = (arr) => {
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  const openTest = () => {
+    setSelectedAnswers({})
+    setShowResults(false)
+    setIsTestOpen(true)
+
+    const shuffled = {}
+    testQuestions.forEach((q) => {
+      shuffled[q.id] = shuffleArray(Object.entries(q.options))
+    })
+    setShuffledOptionsByQuestionId(shuffled)
+  }
+
+  const stopMusic = () => {
+    const { oscillator, audioContext } = audioRef.current || {}
+    try {
+      if (oscillator) oscillator.stop()
+    } catch {
+      // ignore
+    }
+    try {
+      if (audioContext) audioContext.close()
+    } catch {
+      // ignore
+    }
+    audioRef.current = { audioContext: null, oscillator: null }
+    setIsMusicPlaying(false)
+  }
+
+  const startMusic = async () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = 220
+      oscillator.type = 'sine'
+      gainNode.gain.value = 0.03
+
+      oscillator.start()
+      audioRef.current = { audioContext, oscillator }
+      setIsMusicPlaying(true)
+    } catch (e) {
+      console.log('Audio not supported', e)
+    }
+  }
+
+  const handleMusicToggle = () => {
+    if (isMusicPlaying) {
+      stopMusic()
+      return
+    }
+    startMusic()
+  }
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: answer,
+    }))
+  }
+
+  const handleSubmitTest = () => {
+    setShowResults(true)
+  }
+
+  const handleCloseTest = () => {
+    setIsTestOpen(false)
+    setShowResults(false)
+    setSelectedAnswers({})
+    setShuffledOptionsByQuestionId({})
+    stopMusic()
+  }
+
+  const getScore = () => {
+    let correct = 0
+    testQuestions.forEach((q) => {
+      if (selectedAnswers[q.id] === q.correct) {
+        correct++
+      }
+    })
+    return correct
+  }
+
+  const allAnswered = testQuestions.every((q) => selectedAnswers[q.id])
+
+  useEffect(() => {
+    return () => stopMusic()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="chapter5">
@@ -247,7 +435,88 @@ function Chapter5() {
               </ol>
             </div>
           )}
+
+          <button className="btn test-btn" onClick={openTest}>
+            Пройти тест
+          </button>
         </div>
+
+        {isTestOpen && (
+          <div className="test-modal-overlay" onClick={handleCloseTest}>
+            <div className="test-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="test-modal-header">
+                <h2>Тест по теме «Организация диалога в вычислительных системах»</h2>
+                <button className="close-btn" onClick={handleCloseTest}>×</button>
+              </div>
+
+              <div className="test-music-control">
+                <button
+                  className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}
+                  onClick={handleMusicToggle}
+                >
+                  {isMusicPlaying ? '🔊 Музыка включена' : '🔇 Музыка выключена'}
+                </button>
+              </div>
+
+              <div className="test-content">
+                {testQuestions.map((q) => (
+                  <div key={q.id} className="test-question">
+                    <h3>{q.id}. {q.question}</h3>
+                    <div className="test-options">
+                      {(shuffledOptionsByQuestionId[q.id] || Object.entries(q.options)).map(([key, value]) => {
+                        const isSelected = selectedAnswers[q.id] === key
+                        const isCorrect = q.correct === key
+                        const showAnswer = showResults
+                        return (
+                          <label
+                            key={key}
+                            className={`test-option ${isSelected ? 'selected' : ''} ${showAnswer && isCorrect ? 'correct' : ''} ${showAnswer && isSelected && !isCorrect ? 'incorrect' : ''}`}
+                          >
+                            <input
+                              type="radio"
+                              name={`question-${q.id}`}
+                              value={key}
+                              checked={isSelected}
+                              onChange={() => handleAnswerSelect(q.id, key)}
+                              disabled={showResults}
+                            />
+                            <span>{value}</span>
+                            {showAnswer && isCorrect && <span className="correct-mark">✓ Правильный ответ</span>}
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="test-footer">
+                {!showResults ? (
+                  <button
+                    className="btn submit-btn"
+                    onClick={handleSubmitTest}
+                    disabled={!allAnswered}
+                  >
+                    Завершить тест
+                  </button>
+                ) : (
+                  <div className="test-results">
+                    <h3>Результаты теста</h3>
+                    <p className="test-score">
+                      Правильных ответов: {getScore()} из {testQuestions.length}
+                    </p>
+                    <p className="test-percentage">
+                      {Math.round((getScore() / testQuestions.length) * 100)}%
+                    </p>
+                    <button className="btn" onClick={handleCloseTest}>
+                      Закрыть
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         
         <div className="chapter-navigation">
           <Link to="/" className="btn">На главную</Link>
