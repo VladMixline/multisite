@@ -28,3 +28,4 @@ Write-Host "✓ Скрипт запущен в фоновом режиме" -For
 Write-Host "Коммиты будут создаваться автоматически каждые 60 секунд при наличии изменений" -ForegroundColor Cyan
 Write-Host "Для остановки закройте окно PowerShell или найдите процесс и завершите его" -ForegroundColor Yellow
 
+

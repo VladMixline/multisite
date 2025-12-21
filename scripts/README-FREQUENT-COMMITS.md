@@ -51,3 +51,4 @@
 1. Найдите процесс PowerShell в диспетчере задач
 2. Или используйте: `Get-Process | Where-Object {$_.CommandLine -like "*auto-commit*"} | Stop-Process`
 
+
