@@ -84,7 +84,7 @@
 .exercises-grid {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
