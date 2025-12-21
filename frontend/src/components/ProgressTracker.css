@@ -66,9 +66,9 @@
 }
 
 .progress-toggle-collapsed {
-  position: fixed;
-  left: 0;
-  top: 100px;
+  position: absolute;
+  right: -30px;
+  top: 20px;
   width: 30px;
   height: 40px;
   background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
