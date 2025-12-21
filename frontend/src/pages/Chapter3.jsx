@@ -43,7 +43,7 @@ function Chapter3() {
         C: 'Неупорядоченная таблица',
         D: 'Метод цепочек',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ function Chapter3() {
         C: 'log₂N',
         D: '1',
       },
-      correct: ['B'],
+      correct: 'B',
     },
     {
       id: 3,
@@ -65,7 +65,7 @@ function Chapter3() {
         C: 'Бинарный поиск',
         D: 'Хеш-поиск',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 4,
@@ -76,7 +76,7 @@ function Chapter3() {
         C: '8',
         D: '128',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 5,
@@ -87,7 +87,7 @@ function Chapter3() {
         C: 'Таблица ключевых слов языка',
         D: 'Таблица команд процессора',
       },
-      correct: ['B'],
+      correct: 'B',
     },
     {
       id: 6,
@@ -98,7 +98,7 @@ function Chapter3() {
         C: 'Идентификаторы и их характеристики',
         D: 'Только адреса в памяти',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 7,
@@ -109,7 +109,7 @@ function Chapter3() {
         C: 'Преобразовании символа в индекс таблицы',
         D: 'Делении таблицы на блоки',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 8,
@@ -120,7 +120,7 @@ function Chapter3() {
         C: 'Коллизия',
         D: 'Переполнение',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 9,
@@ -131,7 +131,7 @@ function Chapter3() {
         C: 'Двойное хеширование',
         D: 'Случайное рехеширование',
       },
-      correct: ['B'],
+      correct: 'B',
     },
     {
       id: 10,
@@ -142,7 +142,7 @@ function Chapter3() {
         C: 'Пропорциональное',
         D: 'Двойное',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 11,
@@ -153,7 +153,7 @@ function Chapter3() {
         C: 'CHAIN',
         D: 'LINK',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 12,
@@ -164,7 +164,7 @@ function Chapter3() {
         C: 'Количество элементов',
         D: 'Тип данных',
       },
-      correct: ['B'],
+      correct: 'B',
     },
     {
       id: 13,
@@ -175,7 +175,7 @@ function Chapter3() {
         C: 'Таблица может динамически расти',
         D: 'Проще реализация',
       },
-      correct: ['C'],
+      correct: 'C',
     },
     {
       id: 14,
@@ -186,7 +186,7 @@ function Chapter3() {
         C: 'В процессе компиляции при встрече идентификаторов',
         D: 'Только после завершения трансляции',
       },
-      correct: ['C'],
+      correct: 'C',
     },
   ]
 
@@ -301,8 +301,9 @@ function Chapter3() {
 
   const allAnswered = testQuestions.every((q) => {
     const picked = selectedAnswers[q.id]
-    if (Array.isArray(q.correct)) {
-      return Array.isArray(picked) && picked.length > 0
+    const isMultiple = Array.isArray(q.correct) && q.correct.length > 1
+    if (isMultiple) {
+      return Array.isArray(picked) && picked.length === q.correct.length
     }
     return Boolean(picked)
   })
