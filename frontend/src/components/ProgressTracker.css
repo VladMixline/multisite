@@ -41,6 +41,8 @@
   justify-content: center;
   box-shadow: 0 4px 12px rgba(90, 111, 168, 0.4);
   z-index: 999;
+  will-change: auto;
+  transform: translateZ(0);
 }
 
 .progress-open-button:hover {
@@ -94,6 +96,8 @@
   font-size: 1rem;
   margin-left: 1rem;
   flex-shrink: 0;
+  will-change: auto;
+  transform: translateZ(0);
 }
 
 .progress-toggle-header:hover {
