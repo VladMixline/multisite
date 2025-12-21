@@ -59,8 +59,11 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
         </button>
       
       {isExpanded && (
-        <div className="progress-content">
-          <h3 className="progress-title">Прогресс изучения</h3>
+        <>
+          <div className="progress-header">
+            <h3 className="progress-header-title">Прогресс изучения</h3>
+          </div>
+          <div className="progress-content">
           
           {/* Общая статистика */}
           <div className="progress-stats">
