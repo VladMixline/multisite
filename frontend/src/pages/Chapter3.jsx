@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Chapter3.css'
 
 function Chapter3() {
   const [showQuestions, setShowQuestions] = useState(false)
+  const [isTestOpen, setIsTestOpen] = useState(false)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [selectedAnswers, setSelectedAnswers] = useState({})
+  const [showResults, setShowResults] = useState(false)
+  const [shuffledOptionsByQuestionId, setShuffledOptionsByQuestionId] = useState({})
+  const audioRef = useRef({ audioContext: null, oscillator: null })
   
   const questions = [
     "В каком типе организации таблиц символов поиск элемента требует сравнения с каждым элементом таблицы, пока не будет найден подходящий?",
@@ -26,6 +32,296 @@ function Chapter3() {
     "Какая информация хранится в таблице символов?",
     "Как записать информацию о переменных?"
   ]
+
+  const testQuestions = [
+    {
+      id: 1,
+      question: 'Какой способ организации таблицы символов требует сравнения с каждым элементом таблицы при поиске?',
+      options: {
+        A: 'Хеш-адресация',
+        B: 'Бинарный поиск',
+        C: 'Неупорядоченная таблица',
+        D: 'Метод цепочек',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 2,
+      question: 'Среднее число сравнений при поиске в неупорядоченной таблице из N элементов равно:',
+      options: {
+        A: 'N',
+        B: 'N/2',
+        C: 'log₂N',
+        D: '1',
+      },
+      correct: ['B'],
+    },
+    {
+      id: 3,
+      question: 'Какой метод поиска применяется в упорядоченной таблице символов?',
+      options: {
+        A: 'Линейный поиск',
+        B: 'Последовательный поиск',
+        C: 'Бинарный поиск',
+        D: 'Хеш-поиск',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 4,
+      question: 'Сколько сравнений в худшем случае требуется бинарному поиску при n = 128?',
+      options: {
+        A: '6',
+        B: '7',
+        C: '8',
+        D: '128',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 5,
+      question: 'Что такое таблица символов?',
+      options: {
+        A: 'Таблица машинных кодов',
+        B: 'Структура для хранения идентификаторов и их характеристик',
+        C: 'Таблица ключевых слов языка',
+        D: 'Таблица команд процессора',
+      },
+      correct: ['B'],
+    },
+    {
+      id: 6,
+      question: 'Какая информация хранится в таблице символов?',
+      options: {
+        A: 'Только имена идентификаторов',
+        B: 'Только типы данных',
+        C: 'Идентификаторы и их характеристики',
+        D: 'Только адреса в памяти',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 7,
+      question: 'Хеш-адресация заключается в:',
+      options: {
+        A: 'Сортировке идентификаторов по алфавиту',
+        B: 'Последовательном просмотре таблицы',
+        C: 'Преобразовании символа в индекс таблицы',
+        D: 'Делении таблицы на блоки',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 8,
+      question: 'Как называется ситуация, когда два разных символа имеют одинаковый хеш-индекс?',
+      options: {
+        A: 'Дублирование',
+        B: 'Конфликт',
+        C: 'Коллизия',
+        D: 'Переполнение',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 9,
+      question: 'Какие существуют основные способы разрешения коллизий?',
+      options: {
+        A: 'Сортировка',
+        B: 'Рехеширование',
+        C: 'Метод цепочек',
+        D: 'Бинарный поиск',
+      },
+      correct: ['B', 'C'],
+    },
+    {
+      id: 10,
+      question: 'Какой метод рехеширования задаётся последовательностью p₁ = 1, p₂ = 2, p₃ = 3, … ?',
+      options: {
+        A: 'Квадратичное рехеширование',
+        B: 'Линейное рехеширование',
+        C: 'Двойное хеширование',
+        D: 'Случайное рехеширование',
+      },
+      correct: ['B'],
+    },
+    {
+      id: 11,
+      question: 'В каком методе рехеширования используется формула pᵢ = i · h, где h — исходный хеш-индекс?',
+      options: {
+        A: 'Линейное',
+        B: 'Квадратичное',
+        C: 'Пропорциональное',
+        D: 'Двойное',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 12,
+      question: 'Какое дополнительное поле используется в методе цепочек для связывания элементов?',
+      options: {
+        A: 'HASH',
+        B: 'NEXT',
+        C: 'CHAIN',
+        D: 'LINK',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 13,
+      question: 'Что хранится в ячейке хеш-таблицы при использовании метода цепочек?',
+      options: {
+        A: 'Значение идентификатора',
+        B: 'Адрес первого элемента цепочки',
+        C: 'Количество элементов',
+        D: 'Тип данных',
+      },
+      correct: ['B'],
+    },
+    {
+      id: 14,
+      question: 'В чём основное преимущество метода цепочек по сравнению с рехешированием?',
+      options: {
+        A: 'Не требуется хеш-функция',
+        B: 'Исключаются коллизии',
+        C: 'Таблица может динамически расти',
+        D: 'Проще реализация',
+      },
+      correct: ['C'],
+    },
+    {
+      id: 15,
+      question: 'Когда таблица символов начинает заполняться при компиляции?',
+      options: {
+        A: 'После синтаксического анализа',
+        B: 'После генерации кода',
+        C: 'В процессе компиляции при встрече идентификаторов',
+        D: 'Только после завершения трансляции',
+      },
+      correct: ['C'],
+    },
+  ]
+
+  const shuffleArray = (arr) => {
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  const openTest = () => {
+    setSelectedAnswers({})
+    setShowResults(false)
+    setIsTestOpen(true)
+
+    const shuffled = {}
+    testQuestions.forEach((q) => {
+      shuffled[q.id] = shuffleArray(Object.entries(q.options))
+    })
+    setShuffledOptionsByQuestionId(shuffled)
+  }
+
+  const stopMusic = () => {
+    const { oscillator, audioContext } = audioRef.current || {}
+    try {
+      if (oscillator) oscillator.stop()
+    } catch {
+      // ignore
+    }
+    try {
+      if (audioContext) audioContext.close()
+    } catch {
+      // ignore
+    }
+    audioRef.current = { audioContext: null, oscillator: null }
+    setIsMusicPlaying(false)
+  }
+
+  const startMusic = async () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = 220
+      oscillator.type = 'sine'
+      gainNode.gain.value = 0.03
+
+      oscillator.start()
+      audioRef.current = { audioContext, oscillator }
+      setIsMusicPlaying(true)
+    } catch (e) {
+      console.log('Audio not supported', e)
+    }
+  }
+
+  const handleMusicToggle = () => {
+    if (isMusicPlaying) {
+      stopMusic()
+      return
+    }
+    startMusic()
+  }
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: answer,
+    }))
+  }
+
+  const handleAnswerToggle = (questionId, answer) => {
+    setSelectedAnswers((prev) => {
+      const current = prev[questionId] || []
+      const exists = current.includes(answer)
+      const next = exists ? current.filter((a) => a !== answer) : [...current, answer]
+      return { ...prev, [questionId]: next }
+    })
+  }
+
+  const handleSubmitTest = () => {
+    setShowResults(true)
+  }
+
+  const handleCloseTest = () => {
+    setIsTestOpen(false)
+    setShowResults(false)
+    setSelectedAnswers({})
+    setShuffledOptionsByQuestionId({})
+    stopMusic()
+  }
+
+  const getScore = () => {
+    let correct = 0
+    testQuestions.forEach((q) => {
+      const expected = Array.isArray(q.correct) ? q.correct : [q.correct]
+      const picked = selectedAnswers[q.id]
+      if (Array.isArray(picked)) {
+        const allIncluded = expected.length === picked.length && expected.every((v) => picked.includes(v))
+        if (allIncluded) correct++
+      } else if (picked && expected.length === 1 && expected[0] === picked) {
+        correct++
+      }
+    })
+    return correct
+  }
+
+  const allAnswered = testQuestions.every((q) => {
+    const picked = selectedAnswers[q.id]
+    if (Array.isArray(q.correct)) {
+      return Array.isArray(picked) && picked.length > 0
+    }
+    return Boolean(picked)
+  })
+
+  useEffect(() => {
+    return () => stopMusic()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="chapter3">
@@ -132,7 +428,99 @@ function Chapter3() {
               </ol>
             </div>
           )}
+
+          <button className="btn test-btn" onClick={openTest}>
+            Пройти тест
+          </button>
         </div>
+
+        {isTestOpen && (
+          <div className="test-modal-overlay" onClick={handleCloseTest}>
+            <div className="test-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="test-modal-header">
+                <h2>Тест по теме «Организация таблиц символов»</h2>
+                <button className="close-btn" onClick={handleCloseTest}>×</button>
+              </div>
+
+              <div className="test-music-control">
+                <button
+                  className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}
+                  onClick={handleMusicToggle}
+                >
+                  {isMusicPlaying ? '🔊 Музыка включена' : '🔇 Музыка выключена'}
+                </button>
+              </div>
+
+              <div className="test-content">
+                {testQuestions.map((q) => {
+                  const isMultiple = Array.isArray(q.correct) && q.correct.length > 1
+                  const selected = selectedAnswers[q.id]
+                  const shuffledOptions = shuffledOptionsByQuestionId[q.id] || Object.entries(q.options)
+                  return (
+                    <div key={q.id} className="test-question">
+                      <h3>{q.id}. {q.question}</h3>
+                      <div className="test-options">
+                        {shuffledOptions.map(([key, value]) => {
+                          const isSelected = isMultiple
+                            ? Array.isArray(selected) && selected.includes(key)
+                            : selected === key
+                          const isCorrect = q.correct.includes(key)
+                          const showAnswer = showResults
+                          return (
+                            <label
+                              key={key}
+                              className={`test-option ${isSelected ? 'selected' : ''} ${showAnswer && isCorrect ? 'correct' : ''} ${showAnswer && isSelected && !isCorrect ? 'incorrect' : ''}`}
+                            >
+                              <input
+                                type={isMultiple ? 'checkbox' : 'radio'}
+                                name={`question-${q.id}`}
+                                value={key}
+                                checked={isSelected}
+                                onChange={() =>
+                                  isMultiple
+                                    ? handleAnswerToggle(q.id, key)
+                                    : handleAnswerSelect(q.id, key)
+                                }
+                                disabled={showResults}
+                              />
+                              <span>{value}</span>
+                              {showAnswer && isCorrect && <span className="correct-mark">✓ Правильный ответ</span>}
+                            </label>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <div className="test-footer">
+                {!showResults ? (
+                  <button
+                    className="btn submit-btn"
+                    onClick={handleSubmitTest}
+                    disabled={!allAnswered}
+                  >
+                    Завершить тест
+                  </button>
+                ) : (
+                  <div className="test-results">
+                    <h3>Результаты теста</h3>
+                    <p className="test-score">
+                      Правильных ответов: {getScore()} из {testQuestions.length}
+                    </p>
+                    <p className="test-percentage">
+                      {Math.round((getScore() / testQuestions.length) * 100)}%
+                    </p>
+                    <button className="btn" onClick={handleCloseTest}>
+                      Закрыть
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         
         <div className="chapter-navigation">
           <Link to="/" className="btn">На главную</Link>
