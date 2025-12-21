@@ -60,8 +60,10 @@ function App() {
     return (
       <div className="App">
         <Header />
-        <div className="container" style={{ padding: '2rem', textAlign: 'center' }}>
-          <p>Загрузка...</p>
+        <div className="app-body">
+          <div className="container" style={{ padding: '2rem', textAlign: 'center' }}>
+            <p>Загрузка...</p>
+          </div>
         </div>
       </div>
     )
@@ -71,25 +73,24 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="App">
-        <Header
-          onToggleProgress={() => setIsProgressVisible((v) => !v)}
-          isProgressVisible={isProgressVisible}
-        />
+        <Header />
         <ProgressTracker isVisible={isProgressVisible} />
-        <Routes>
-          <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
-          <Route path="/introduction" element={<Introduction />} />
-          <Route path="/chapter1" element={<Chapter1 />} />
-          <Route path="/chapter2" element={<Chapter2 />} />
-          <Route path="/chapter3" element={<Chapter3 />} />
-          <Route path="/chapter4" element={<Chapter4 />} />
-          <Route path="/chapter5" element={<Chapter5 />} />
-          <Route path="/chapter/:chapterNumber" element={<Chapter chapters={chapters} />} />
-          <Route path="/exercises" element={<Exercises chapters={chapters} />} />
-          <Route path="/variants" element={<Variants chapters={chapters} />} />
-          <Route path="/coursework" element={<Coursework courseworkText={courseworkText} />} />
-          <Route path="/conclusion" element={<Conclusion conclusionText={conclusionText} />} />
-        </Routes>
+        <div className="app-body">
+          <Routes>
+            <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
+            <Route path="/introduction" element={<Introduction />} />
+            <Route path="/chapter1" element={<Chapter1 />} />
+            <Route path="/chapter2" element={<Chapter2 />} />
+            <Route path="/chapter3" element={<Chapter3 />} />
+            <Route path="/chapter4" element={<Chapter4 />} />
+            <Route path="/chapter5" element={<Chapter5 />} />
+            <Route path="/chapter/:chapterNumber" element={<Chapter chapters={chapters} />} />
+            <Route path="/exercises" element={<Exercises chapters={chapters} />} />
+            <Route path="/variants" element={<Variants chapters={chapters} />} />
+            <Route path="/coursework" element={<Coursework courseworkText={courseworkText} />} />
+            <Route path="/conclusion" element={<Conclusion conclusionText={conclusionText} />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   )

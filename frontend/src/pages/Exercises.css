@@ -61,8 +61,6 @@
   margin-left: 1.5rem;
   line-height: 2;
   color: #34495e;
-  list-style: none;
-  padding-left: 0;
 }
 
 .tasks-ol li {
@@ -256,7 +254,7 @@
 
 .btn-save:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px  param($m) $val = [int]$m.Groups[1].Value; if($val -gt 3) { "rgba(90, 111, 168, 0." + ([math]::Min($val - 1, 3)).ToString() + ")" } else { $m.Value } ;
+  box-shadow: 0 6px 20px rgba(90, 111, 168, 0.35);
   background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
 }
 
@@ -310,7 +308,7 @@
 
 .btn:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 30px  param($m) $val = [int]$m.Groups[1].Value; if($val -gt 3) { "rgba(90, 111, 168, 0." + ([math]::Min($val - 1, 3)).ToString() + ")" } else { $m.Value } ;
+  box-shadow: 0 8px 30px rgba(90, 111, 168, 0.35);
   background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
 }
 
