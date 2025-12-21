@@ -1,9 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Chapter2.css'
 
 function Chapter2() {
   const [showQuestions, setShowQuestions] = useState(false)
+  const [isTestOpen, setIsTestOpen] = useState(false)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [selectedAnswers, setSelectedAnswers] = useState({})
+  const [showResults, setShowResults] = useState(false)
+  const [shuffledOptionsByQuestionId, setShuffledOptionsByQuestionId] = useState({})
+  const audioRef = useRef({ audioContext: null, oscillator: null })
   
   const questions = [
     "Какова роль лексического анализатора?",
@@ -29,6 +35,276 @@ function Chapter2() {
     "Почему программу на автокоде считают наихудшим из вариантов?",
     "В генерации кода для постфиксной записи для указания вершины стека обычно используют индекс i. Какое значение i перед чтением стека будет означать, что стек пуст?"
   ]
+
+  const testQuestions = [
+    {
+      id: 1,
+      question: 'Какова основная роль лексического анализатора?',
+      options: {
+        A: 'Оптимизация объектного кода',
+        B: 'Разбор исходного текста на лексемы',
+        C: 'Построение дерева грамматического разбора',
+        D: 'Генерация команд для машины',
+      },
+      correct: 'B',
+    },
+    {
+      id: 2,
+      question: 'Что такое лексемы?',
+      options: {
+        A: 'Команды объектного кода',
+        B: 'Минимальные синтаксические единицы исходной программы',
+        C: 'Памятные точки компилятора',
+        D: 'Операции арифметического выражения',
+      },
+      correct: 'B',
+    },
+    {
+      id: 3,
+      question: 'Каким этапом компиляции является синтаксический анализ?',
+      options: {
+        A: 'Первым',
+        B: 'Вторым',
+        C: 'Последним',
+        D: 'Не является этапом компиляции',
+      },
+      correct: 'B',
+    },
+    {
+      id: 4,
+      question: 'Какие методы синтаксического анализа известны?',
+      options: {
+        A: 'Лексический и семантический',
+        B: 'Нисходящий и восходящий',
+        C: 'Автокодирование и объектное кодирование',
+        D: 'Рекурсивный и стековый',
+      },
+      correct: 'B',
+    },
+    {
+      id: 5,
+      question: 'Какой этап предшествует синтаксическому анализу?',
+      options: {
+        A: 'Генерация кода',
+        B: 'Лексический анализ',
+        C: 'Оптимизация кода',
+        D: 'Загрузка программы',
+      },
+      correct: 'B',
+    },
+    {
+      id: 6,
+      question: 'Что означает запись <список переменных> → ид {, ид}?',
+      options: {
+        A: 'Список переменных обязательно состоит из одной переменной',
+        B: 'Переменные разделяются точкой с запятой',
+        C: 'Список переменных состоит из одного или более идентификаторов, разделённых запятой',
+        D: 'Переменные могут быть только целыми',
+      },
+      correct: 'C',
+    },
+    {
+      id: 7,
+      question: 'Конечными символами грамматического дерева являются…',
+      options: {
+        A: 'Нетерминальные символы',
+        B: 'Лексемы исходного текста',
+        C: 'Временные переменные',
+        D: 'Операции генерации кода',
+      },
+      correct: 'B',
+    },
+    {
+      id: 8,
+      question: 'В каком виде лексический анализатор должен представлять исходный текст?',
+      options: {
+        A: 'Как последовательность четвёрок',
+        B: 'Как последовательность лексем с кодами и дополнительными данными',
+        C: 'Как постфиксную запись',
+        D: 'Как объектный код',
+      },
+      correct: 'B',
+    },
+    {
+      id: 9,
+      question: 'Во время какого этапа предложения распознаются как языковые конструкции грамматики?',
+      options: {
+        A: 'Лексического анализа',
+        B: 'Синтаксического анализа',
+        C: 'Генерации кода',
+        D: 'Оптимизации кода',
+      },
+      correct: 'B',
+    },
+    {
+      id: 10,
+      question: 'Какой метод относится к восходящим и строит разбор от конечных узлов к корню?',
+      options: {
+        A: 'Рекурсивного спуска',
+        B: 'Метод операторного предшествования',
+        C: 'Нисходящий метод',
+        D: 'Метод таблицы символов',
+      },
+      correct: 'B',
+    },
+    {
+      id: 11,
+      question: 'В методе операторного предшествования возможно ли переименование нетерминальных символов?',
+      options: {
+        A: 'Да',
+        B: 'Нет',
+        C: 'Только для арифметических операций',
+        D: 'Только для идентификаторов',
+      },
+      correct: 'A',
+    },
+    {
+      id: 12,
+      question: 'В чём суть метода рекурсивного спуска?',
+      options: {
+        A: 'Использование стека для генерации кода',
+        B: 'Разделение исходного текста на лексемы',
+        C: 'Построение процедур для каждого нетерминального символа грамматики',
+        D: 'Преобразование инфиксной записи в постфиксную',
+      },
+      correct: 'C',
+    },
+    {
+      id: 13,
+      question: 'Для чего применяется изменённый способ записи БНФ с фигурными скобками {}?',
+      options: {
+        A: 'Для сокращения кода генератора',
+        B: 'Чтобы избежать бесконечной рекурсии при вызове процедур',
+        C: 'Для оптимизации объектного кода',
+        D: 'Для преобразования в постфиксную запись',
+      },
+      correct: 'B',
+    },
+    {
+      id: 14,
+      question: 'В каком виде представляется программа на выходе синтаксического анализатора?',
+      options: {
+        A: 'Как объектный код',
+        B: 'Как последовательность четвёрок, троек или постфиксную запись',
+        C: 'Как инфиксную запись',
+        D: 'Как текст исходной программы',
+      },
+      correct: 'B',
+    },
+    {
+      id: 15,
+      question: 'Запись, в которой знак операции ставится непосредственно за операндами, называется…',
+      options: {
+        A: 'Префиксной',
+        B: 'Постфиксной',
+        C: 'Инфиксной',
+        D: 'Четвёрочной',
+      },
+      correct: 'B',
+    },
+  ]
+
+  const shuffleArray = (arr) => {
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  const openTest = () => {
+    setSelectedAnswers({})
+    setShowResults(false)
+    setIsTestOpen(true)
+
+    const shuffled = {}
+    testQuestions.forEach((q) => {
+      shuffled[q.id] = shuffleArray(Object.entries(q.options))
+    })
+    setShuffledOptionsByQuestionId(shuffled)
+  }
+
+  const stopMusic = () => {
+    const { oscillator, audioContext } = audioRef.current || {}
+    try {
+      if (oscillator) oscillator.stop()
+    } catch {
+      // ignore
+    }
+    try {
+      if (audioContext) audioContext.close()
+    } catch {
+      // ignore
+    }
+    audioRef.current = { audioContext: null, oscillator: null }
+    setIsMusicPlaying(false)
+  }
+
+  const startMusic = async () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+
+      oscillator.frequency.value = 220
+      oscillator.type = 'sine'
+      gainNode.gain.value = 0.03
+
+      oscillator.start()
+      audioRef.current = { audioContext, oscillator }
+      setIsMusicPlaying(true)
+    } catch (e) {
+      console.log('Audio not supported', e)
+    }
+  }
+
+  const handleMusicToggle = () => {
+    if (isMusicPlaying) {
+      stopMusic()
+      return
+    }
+    startMusic()
+  }
+
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: answer,
+    }))
+  }
+
+  const handleSubmitTest = () => {
+    setShowResults(true)
+  }
+
+  const handleCloseTest = () => {
+    setIsTestOpen(false)
+    setShowResults(false)
+    setSelectedAnswers({})
+    setShuffledOptionsByQuestionId({})
+    stopMusic()
+  }
+
+  const getScore = () => {
+    let correct = 0
+    testQuestions.forEach((q) => {
+      if (selectedAnswers[q.id] === q.correct) {
+        correct++
+      }
+    })
+    return correct
+  }
+
+  const allAnswered = testQuestions.every((q) => selectedAnswers[q.id])
+
+  useEffect(() => {
+    return () => stopMusic()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="chapter2">
@@ -542,7 +818,88 @@ end;`}</pre>
               </ol>
             </div>
           )}
+
+          <button className="btn test-btn" onClick={openTest}>
+            Пройти тест
+          </button>
         </div>
+
+        {isTestOpen && (
+          <div className="test-modal-overlay" onClick={handleCloseTest}>
+            <div className="test-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="test-modal-header">
+                <h2>Тест по теме «Теория трансляции»</h2>
+                <button className="close-btn" onClick={handleCloseTest}>×</button>
+              </div>
+
+              <div className="test-music-control">
+                <button
+                  className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}
+                  onClick={handleMusicToggle}
+                >
+                  {isMusicPlaying ? '🔊 Музыка включена' : '🔇 Музыка выключена'}
+                </button>
+              </div>
+
+              <div className="test-content">
+                {testQuestions.map((q) => (
+                  <div key={q.id} className="test-question">
+                    <h3>{q.id}. {q.question}</h3>
+                    <div className="test-options">
+                      {(shuffledOptionsByQuestionId[q.id] || Object.entries(q.options)).map(([key, value]) => {
+                        const isSelected = selectedAnswers[q.id] === key
+                        const isCorrect = q.correct === key
+                        const showAnswer = showResults
+                        return (
+                          <label
+                            key={key}
+                            className={`test-option ${isSelected ? 'selected' : ''} ${showAnswer && isCorrect ? 'correct' : ''} ${showAnswer && isSelected && !isCorrect ? 'incorrect' : ''}`}
+                          >
+                            <input
+                              type="radio"
+                              name={`question-${q.id}`}
+                              value={key}
+                              checked={isSelected}
+                              onChange={() => handleAnswerSelect(q.id, key)}
+                              disabled={showResults}
+                            />
+                            <span>{value}</span>
+                            {showAnswer && isCorrect && <span className="correct-mark">✓ Правильный ответ</span>}
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="test-footer">
+                {!showResults ? (
+                  <button
+                    className="btn submit-btn"
+                    onClick={handleSubmitTest}
+                    disabled={!allAnswered}
+                  >
+                    Завершить тест
+                  </button>
+                ) : (
+                  <div className="test-results">
+                    <h3>Результаты теста</h3>
+                    <p className="test-score">
+                      Правильных ответов: {getScore()} из {testQuestions.length}
+                    </p>
+                    <p className="test-percentage">
+                      {Math.round((getScore() / testQuestions.length) * 100)}%
+                    </p>
+                    <button className="btn" onClick={handleCloseTest}>
+                      Закрыть
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         
         <div className="chapter-navigation">
           <Link to="/" className="btn">На главную</Link>
