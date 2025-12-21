@@ -152,6 +152,16 @@ function ProgressTracker({ isVisible, onToggleVisibility }) {
           </div>
         </>
       )}
+      {!isExpanded && (
+        <button 
+          className="progress-toggle-collapsed"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label="Развернуть прогресс"
+          title="Развернуть"
+        >
+          ▶
+        </button>
+      )}
       </div>
     </>
   )
