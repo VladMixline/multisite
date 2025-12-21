@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Introduction from './pages/Introduction'
@@ -62,7 +61,6 @@ function App() {
         <div className="container" style={{ padding: '2rem', textAlign: 'center' }}>
           <p>Загрузка...</p>
         </div>
-        <Footer />
       </div>
     )
   }
@@ -86,7 +84,6 @@ function App() {
           <Route path="/coursework" element={<Coursework courseworkText={courseworkText} />} />
           <Route path="/conclusion" element={<Conclusion conclusionText={conclusionText} />} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   )
