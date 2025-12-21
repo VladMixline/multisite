@@ -17,7 +17,12 @@
 }
 
 .progress-tracker.collapsed {
-  transform: translateX(-280px);
+  transform: translateX(-220px);
+  width: 280px;
+}
+
+.progress-tracker.collapsed .progress-content {
+  display: none;
 }
 
 
