@@ -30,7 +30,7 @@
   top: calc(var(--site-header-height, 80px) + 20px);
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
+  background: linear-gradient(135deg, #5f6368 0%, #8a8f98 100%);
   color: #FFF8E7;
   border: none;
   border-radius: 12px;
@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(90, 111, 168, 0.4);
+  box-shadow: 0 4px 12px rgba(70, 74, 80, 0.45);
   z-index: 999;
   will-change: auto;
   transform: translateZ(0);
@@ -53,8 +53,8 @@
 }
 
 .progress-open-button:hover {
-  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
-  box-shadow: 0 6px 16px rgba(90, 111, 168, 0.5);
+  background: linear-gradient(135deg, #4b4f55 0%, #7a808a 100%);
+  box-shadow: 0 6px 16px rgba(70, 74, 80, 0.55);
   transform: translateZ(0) !important;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .progress-toggle-header {
-  background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
+  background: linear-gradient(135deg, #5f6368 0%, #8a8f98 100%);
   color: #FFF8E7;
   border: none;
   border-radius: 12px;
@@ -109,7 +109,7 @@
   /* отключаем глобальные анимации/transition для button из App.css */
   animation: none !important;
   transition: none !important;
-  box-shadow: 0 4px 12px rgba(90, 111, 168, 0.35);
+  box-shadow: 0 4px 12px rgba(70, 74, 80, 0.4);
 }
 
 .progress-toggle-header::before {
@@ -117,8 +117,8 @@
 }
 
 .progress-toggle-header:hover {
-  background: linear-gradient(135deg, #8a7fa8 0%, #a87fa8 100%);
-  box-shadow: 0 6px 16px rgba(90, 111, 168, 0.5);
+  background: linear-gradient(135deg, #4b4f55 0%, #7a808a 100%);
+  box-shadow: 0 6px 16px rgba(70, 74, 80, 0.55);
   transform: translateZ(0) !important;
 }
 
