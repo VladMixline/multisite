@@ -1,9 +1,9 @@
 .progress-tracker {
   position: fixed;
   left: 0;
-  top: 80px;
+  top: var(--site-header-height, 80px);
   width: 280px;
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--site-header-height, 80px));
   background: rgba(255, 248, 231, 0.95);
   backdrop-filter: blur(10px);
   border-right: 2px solid rgba(90, 111, 168, 0.15);
@@ -27,7 +27,7 @@
 .progress-open-button {
   position: fixed;
   left: 10px;
-  top: 100px;
+  top: calc(var(--site-header-height, 80px) + 20px);
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #5a6fa8 0%, #a87fa8 100%);
