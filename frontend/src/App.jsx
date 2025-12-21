@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
+import ProgressTracker from './components/ProgressTracker'
 import Home from './pages/Home'
 import Introduction from './pages/Introduction'
 import Chapter from './pages/Chapter'
@@ -70,6 +71,7 @@ function App() {
       <ScrollToTop />
       <div className="App">
         <Header />
+        <ProgressTracker />
         <Routes>
           <Route path="/" element={<Home chapters={chapters.filter(ch => !['0', 'exercises', 'variants', 'coursework', 'conclusion'].includes(ch.number))} />} />
           <Route path="/introduction" element={<Introduction />} />

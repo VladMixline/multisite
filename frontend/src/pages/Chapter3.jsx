@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { markChapterViewed, markTestCompleted } from '../utils/progressTracker'
 import './Chapter3.css'
 
 function Chapter3() {
+  useEffect(() => {
+    markChapterViewed('chapter3')
+  }, [])
   const [showQuestions, setShowQuestions] = useState(false)
   const [isTestOpen, setIsTestOpen] = useState(false)
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
@@ -274,6 +278,8 @@ function Chapter3() {
 
   const handleSubmitTest = () => {
     setShowResults(true)
+    const score = getScore()
+    markTestCompleted('chapter3', score, testQuestions.length)
   }
 
   const handleCloseTest = () => {
