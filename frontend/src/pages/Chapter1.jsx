@@ -8,6 +8,7 @@ function Chapter1() {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
   const [selectedAnswers, setSelectedAnswers] = useState({})
   const [showResults, setShowResults] = useState(false)
+  const [shuffledOptionsByQuestionId, setShuffledOptionsByQuestionId] = useState({})
   const audioRef = useRef({ audioContext: null, oscillator: null })
   
   const questions = [
@@ -77,6 +78,27 @@ function Chapter1() {
     },
   ]
 
+  const shuffleArray = (arr) => {
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  const openTest = () => {
+    setSelectedAnswers({})
+    setShowResults(false)
+    setIsTestOpen(true)
+
+    const shuffled = {}
+    testQuestions.forEach((q) => {
+      shuffled[q.id] = shuffleArray(Object.entries(q.options))
+    })
+    setShuffledOptionsByQuestionId(shuffled)
+  }
+
   const stopMusic = () => {
     const { oscillator, audioContext } = audioRef.current || {}
     try {
@@ -137,6 +159,7 @@ function Chapter1() {
     setIsTestOpen(false)
     setShowResults(false)
     setSelectedAnswers({})
+    setShuffledOptionsByQuestionId({})
     stopMusic()
   }
 
@@ -305,10 +328,6 @@ function Chapter1() {
         </section>
 
         <div className="questions-section">
-          <button className="btn test-btn" onClick={() => setIsTestOpen(true)}>
-            Пройти тест
-          </button>
-
           <button 
             className="control-questions-btn"
             onClick={() => setShowQuestions(!showQuestions)}
@@ -325,6 +344,10 @@ function Chapter1() {
               </ul>
             </div>
           )}
+
+          <button className="btn test-btn" onClick={openTest}>
+            Пройти тест
+          </button>
         </div>
 
         {isTestOpen && (
@@ -349,7 +372,7 @@ function Chapter1() {
                   <div key={q.id} className="test-question">
                     <h3>{q.id}. {q.question}</h3>
                     <div className="test-options">
-                      {Object.entries(q.options).map(([key, value]) => {
+                      {(shuffledOptionsByQuestionId[q.id] || Object.entries(q.options)).map(([key, value]) => {
                         const isSelected = selectedAnswers[q.id] === key
                         const isCorrect = q.correct === key
                         const showAnswer = showResults
